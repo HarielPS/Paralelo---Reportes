@@ -1,0 +1,33 @@
+%%% Chapters and Sections %%%
+\ifthenelse{\equal{\ChapterOption}{classic}}{
+    \titleformat{\chapter}[display]%
+    {\raggedleft\huge\bfseries} % Aplica negrita (bold) y tamaño \huge (16 puntos) al título
+    {\raggedleft\fontsize{24}{10}\bfseries{\color{chapterdarkred}{\thechapter}}} % Número de capítulo en 24 puntos en negrita
+    {0pt}%
+    {\hspace{3cm}\minionfont\fontsize{16}{16}\selectfont\bfseries} % Título en 16 puntos en negrita
+}{}
+
+\titleformat{\subsection}[hang] % Formato de la subsección
+  {\normalfont\bfseries\fontsize{14}{14}\selectfont} % Aplicamos negrita y tamaño 14
+  {} % Sin prefijo
+  {0pt} % Espacio entre número y título
+  {} % Sin formato adicional
+
+
+\ifthenelse{\equal{\ChapterOption}{fancy}}{
+    \titleformat{\chapter}[display]
+    {\flushright\normalsize\huge\color{black}}%
+    {\flushright\normalsize%
+    {\fontsize{12}{14}\selectfont\hspace*{-1em}\rule[-2pt]{.1pt}{30pt}\hspace{0.5em}\raisebox{4.5pt}{\thechapter}}} % Número de capítulo en 12 puntos
+    {10pt}%
+    {\addfontfeature{LetterSpace=6}\huge\scshape} % Título en 16 puntos
+}{}
+
+\ifthenelse{\equal{\ChapterOption}{modern}}{
+    \titleformat{\chapter}[display]
+    {\normalsize\huge\color{black}}%
+    {\minionfont\flushright\fontsize{12}{14}\bfseries%
+    {\color{chaptergray}\raisebox{5pt}{\thechapter}}} % Número de capítulo en 12 puntos
+    {10pt}%
+    {\minionfont\addfontfeature{LetterSpace=6}\fontsize{14}{16}\MakeUppercase} % Título en 14 puntos
+}{}

@@ -1,0 +1,118 @@
+\ifthenelse{\equal{\CoverOption}{classic}}{
+    \newcommand\BackgroundPicCover{%
+    \put(0,0){%
+    \parbox[b][\paperheight]{\paperwidth}{%
+    \vfill
+    \centering
+    \includegraphics[width=\paperwidth,height=\paperheight,keepaspectratio]{Figures/Theme/Cover-BG.pdf}%
+    \vfill
+    }}}
+}{
+    \newcommand\BackgroundPicCover{%
+    \put(0,0){%
+    \parbox[b][\paperheight]{\paperwidth}{%
+    \vfill
+    \centering
+    \includegraphics[width=\paperwidth,height=\paperheight,keepaspectratio]{Figures/Theme/Front-Page-BG.pdf}%
+    \vfill
+    }}}
+}
+
+\AddToShipoutPictureBG*{\BackgroundPicCover}
+
+\newgeometry{margin=1.98cm, top=2.15cm, bottom=1.47cm}
+\begin{titlepage}
+    \latofont
+    \ifthenelse{\equal{\CoverOption}{classic}}{\color{white}}{\color{frontpagedark}}
+    \vspace*{\baselineskip}
+
+{
+    % Imagenes de Escudos
+    \begin{figure}[h]
+        \centering
+        \includegraphics[width=4 cm]{Figures/Theme/Logotypes/IPN.png} \hfill
+        \includegraphics[width=4 cm]{Figures/Theme/Logotypes/ESCOM.png}
+    \end{figure}
+    
+            
+    % Title Escuela.
+    \begin{center} % Asegura que todo el bloque esté centrado correctamente
+        \bfseries\fontsize{16}{20}\selectfont \MakeUppercase{Instituto Politécnico Nacional}\\
+        \rule{10cm}{0.5pt} % Línea separadora
+        \\
+        \bfseries\fontsize{14}{18}\selectfont \MakeUppercase{Escuela Superior de Cómputo}
+    \end{center}
+}
+
+
+    \vspace{5.5\baselineskip}
+    % Title.
+	\noindent
+    \makebox[\textwidth][l]{%
+        \parbox{\dimexpr\textwidth-4cm\relax}{
+            \setstretch{1.03}
+            \raggedright\bfseries\fontsize{18}{21}\selectfont\GetTitle
+        }
+    }
+
+    \vspace{0.8\baselineskip}
+
+    % Subtitle.
+    \noindent
+    \makebox[\textwidth][l]{%
+        \parbox{\dimexpr\textwidth-7cm\relax}{
+            \setstretch{1.03}
+            \raggedright\fontsize{14}{19}\selectfont\GetSubtitle
+        }
+    }
+
+    \vspace{35pt}  
+
+    % Author.
+    {\noindent\bfseries\fontsize{14}{19}\selectfont\GetFirstAuthor}
+
+    \ifdefined\GetSecondAuthor
+        \vspace{8pt}
+        {\noindent\bfseries\fontsize{14}{19}\selectfont\GetSecondAuthor}
+	\fi
+
+    \ifdefined\GetThirdAuthor
+        \vspace{8pt}
+        {\noindent\bfseries\fontsize{14}{19}\selectfont\GetThirdAuthor}
+	\fi
+
+    \ifdefined\GetFourthAuthor
+        \vspace{8pt}
+        {\noindent\bfseries\fontsize{14}{19}\selectfont\GetFourthAuthor}
+	\fi
+ 
+	\vfill
+
+    % School.
+%	{\noindent\fontsize{10}{12}\selectfont\GetSchool}
+	
+    % Department.
+%	{\noindent\fontsize{10}{12}\selectfont\GetDepartment}
+
+    % Degree.
+%	{\noindent\fontsize{10}{12}\selectfont\GetDegree}
+
+    % Course.
+%    \ifdefined\GetCourse
+ %       {\noindent\fontsize{10}{12}\selectfont\GetCourse}
+%	\fi
+
+    \ifthenelse{\equal{\DocStageOption}{working}}{
+        \vspace{62pt}
+        {\noindent\fontsize{10}{12}\selectfont\overwritecolor{yellow}{\GetDocumentVersion \\ \textit{\today}}} 
+        \vspace{62pt}
+    }{
+        \vspace{125pt}
+    }
+
+    % Local & Date.
+	{\noindent\fontsize{10}{12}\selectfont\GetDate}
+
+    \vspace{68pt}
+\end{titlepage}
+\restoregeometry

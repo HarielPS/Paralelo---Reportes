@@ -1,0 +1,55 @@
+% Author Name: José António Portela Areia
+% Author Contact: jose.apareia@gmail.com
+% Version: 2.2.4 - 2025/03/07
+% Public Repository: https://github.com/joseareia/ipleiria-thesis
+% Wiki/Getting Help: https://github.com/joseareia/ipleiria-thesis/wiki
+
+\documentclass[
+    language=spanish,
+    school=estg,
+    docstage=final,
+    media=paper,
+    linkcolor=black,
+    chapterstyle=classic,
+    coverstyle=bw
+]{IPLeiriaThesis}
+
+\usepackage[spanish]{babel}  
+\usepackage{float} % Agrega esto en el preámbulo
+%%% Document Version %%%
+\DocumentVersion{1.0.0} % This is required only if the 'docstage' is set to 'working'.
+
+%%% Document Metadata %%%
+\input{Metadata/Metadata}
+
+%%% Loading of Glossary and Acronyms %%%
+\begin{document}
+
+%%% Front Matter %%%
+\include{Matter/00-Cover}
+
+%%% Roman Numeration %%%
+\pagenumbering{roman}
+
+%%% Table of Contents, List of Figures and List of Tables %%%
+
+\bookmarktocentry\tableofcontents
+\listoffigures
+\listoftables
+
+\clearpage
+\pagenumbering{arabic}
+\setcounter{page}{1}
+
+%%% Chapters (**Insert Yours Here**) %%%
+\include{Chapters/01-Introduction}
+\include{Chapters/02-Theoretical}
+\include{Chapters/03-Solutions}
+\include{Chapters/05-CalculosSerieFourier}
+\include{Chapters/04-Conclusions}
+
+
+%%% Bibliography %%%
+\printbibliography[title={\refname},heading=bibintoc]
+
+\end{document}

@@ -1,0 +1,19 @@
+\usepackage[T1]{fontenc} % Encoding para caracteres extendidos
+\usepackage{newpxmath} % Fuentes PX para matemáticas (alternativa a las fuentes estándar)
+\usepackage{fvextra} % Personalización avanzada para entornos verbatim
+\usepackage{csquotes} % Comillas contextuales
+\usepackage{fontspec} % Necesario para fuentes personalizadas con XeLaTeX o LuaLaTeX
+
+\linespread{1.2} % Aumenta ligeramente el interlineado
+\setmainfont{Times New Roman}[Contextuals={WordInitial,WordFinal},LetterSpace=0.7] % Establece Times New Roman como la fuente principal
+
+%%% Ajuste de tamaño de texto y títulos %%%
+\newcommand{\latofont}{\fontspec{Lato}} 
+\newcommand{\garamondfont}{\fontspec{EB Garamond}}
+\newcommand{\minionfont}{\fontspec[
+    Path = Configurations/Fonts/,
+    UprightFont = Minion-Pro-Display.otf,
+    BoldFont = Minion-Pro-Bold.ttf,
+    ItalicFont = Minion-Pro-Italic.ttf,
+    BoldItalicFont = Minion-Pro-Bold-Italic.ttf,
+]{Minion Pro}}

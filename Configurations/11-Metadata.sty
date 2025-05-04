@@ -1,0 +1,26 @@
+%%% Document Settings %%%
+\NewDocumentCommand{\FirstAuthor}{m}{\newcommand{\GetFirstAuthor}{#1}}
+\NewDocumentCommand{\SecondAuthor}{m}{\newcommand{\GetSecondAuthor}{#1}}
+\NewDocumentCommand{\ThirdAuthor}{m}{\newcommand{\GetThirdAuthor}{#1}}
+\NewDocumentCommand{\FourthAuthor}{m}{\newcommand{\GetFourthAuthor}{#1}}
+\NewDocumentCommand{\Subtitle}{m}{\newcommand{\GetSubtitle}{#1}}
+%%
+\NewDocumentCommand{\EscuelaGen}{m}{\newcommand{\GetEscuelaGen}{#1}}
+\NewDocumentCommand{\EscuelaEsp}{m}{\newcommand{\GetEscuelaEsp}{#1}}
+
+% Redefine the commands to Pascal Case.
+\let\Title\title
+\newcommand{\GetTitle}{\@title}
+\let\Date\date
+\newcommand{\GetDate}{\@date}
+
+% Document version command.
+\NewDocumentCommand{\DocumentVersion}{m}{%
+    \newcommand{\GetDocumentVersion}{\color{black}{%
+        \ifthenelse{\equal{\LanguageOption}{portuguese}}{%
+            \textit{Versão Preliminar #1}%
+        }{%
+            \textit{Draft Version #1}%
+        }%
+    }}%
+}
