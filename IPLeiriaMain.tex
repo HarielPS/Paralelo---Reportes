@@ -14,8 +14,20 @@
     coverstyle=bw
 ]{IPLeiriaThesis}
 
-\usepackage[spanish]{babel}  
+\usepackage[spanish]{babel}
+%configuracion para imagenes
+\usepackage{caption}
+\captionsetup[figure]{
+    skip=2pt,           % Reduce espacio imagen-caption
+    belowskip=-10pt,    % Espacio negativo después del caption
+    justification=centering
+}
+\usepackage[skip=0pt]{parskip} 
 \usepackage{float} % Agrega esto en el preámbulo
+\usepackage{tcolorbox}
+\tcbuselibrary{minted,breakable}
+
+
 %%% Document Version %%%
 \DocumentVersion{1.0.0} % This is required only if the 'docstage' is set to 'working'.
 
@@ -28,28 +40,31 @@
 %%% Front Matter %%%
 \include{Matter/00-Cover}
 
+\include{Chapters/05-Resumen}
+
 %%% Roman Numeration %%%
 \pagenumbering{roman}
 
-%%% Table of Contents, List of Figures and List of Tables %%%
 
 \bookmarktocentry\tableofcontents
 \listoffigures
-\listoftables
 
 \clearpage
 \pagenumbering{arabic}
 \setcounter{page}{1}
 
 %%% Chapters (**Insert Yours Here**) %%%
+
 \include{Chapters/01-Introduction}
 \include{Chapters/02-Theoretical}
 \include{Chapters/03-Solutions}
-\include{Chapters/05-CalculosSerieFourier}
 \include{Chapters/04-Conclusions}
+\include{Chapters/06-Anexos}
 
-
+%%% Ensure all figures are closed properly %%%
 %%% Bibliography %%%
 \printbibliography[title={\refname},heading=bibintoc]
+
+\include{Chapters/06-Anexos}
 
 \end{document}

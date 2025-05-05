@@ -117,3 +117,142 @@ El método se basa en la expansión en series de Fourie usando simplificaciones 
 
 
 
+%-------------------------------------------- Fase 3
+\section{Programa en C para el cálculo de la serie de Fourier}
+    El objetivo del programa es calcular una aproximación de la serie de Fourier para la función \(f(x)=6−4x\) ., utilizando un enfoque paralelo basado en la creación de procesos hijos, memoria compartida y semáforos en el sistema operativo Linux. Esta función es impar, por lo tanto, su serie de Fourier se puede expresar únicamente con términos en seno, en la forma:
+\[
+f(x) \approx a_0 + \sum_{n=1}^{N} b_n \sin(nx)
+\]
+
+donde \( a_0 = 6 \) y los coeficientes \( b_n \) están dados por:
+
+\[
+b_n = \frac{8}{n}(-1)^n
+\]
+
+Para este programa, se consideran valores de \( x \) desde -3.14 hasta 3.14 con un incremento de 0.15. Se calculan los primeros 10 términos de la serie de Fourier, y cada uno de estos es calculado por un proceso hijo independiente. Los resultados son almacenados en una matriz en memoria compartida, protegida por un semáforo para evitar conflictos en la escritura concurrente. Finalmente, se suman todos los términos y se genera un archivo CSV con los resultados.
+
+
+Para la implementación en C se hace uso de varias bibliotecas. La biblioteca \texttt{stdio.h} se emplea para las operaciones de entrada y salida estándar como la lectura y escritura en archivos. La biblioteca \texttt{stdlib.h} se utiliza para funciones de control como \texttt{exit()} y la gestión de memoria dinámica. \texttt{unistd.h} proporciona el uso de \texttt{fork()}, fundamental para la creación de procesos hijos. Además, se incluyen \texttt{sys/ipc.h}, \texttt{sys/shm.h} y \texttt{sys/sem.h}, necesarias para trabajar con memoria compartida y semáforos bajo el esquema de IPC System V en Linux. Finalmente, \texttt{math.h} permite el uso de funciones matemáticas como \texttt{sin()} y \texttt{pow()}.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\linewidth]{Figures/codigo/librerias.png}
+    \caption[Librerías utilizadas en el programa]{Fragmento de código que muestra las librerías utilizadas en el programa.}
+    \label{fig:codigo-funcion}
+\end{figure}
+
+
+La función \texttt{funcion} tiene la responsabilidad de calcular cada término individual de la serie de Fourier. Recibe como parámetros el valor de \( n \) y el punto \( x \), y devuelve el resultado de la expresión \( \frac{8}{n} (-1)^n \sin(nx) \), que corresponde al coeficiente \( b_n \sin(nx) \). Este valor es calculado por cada proceso hijo para los diferentes valores de \( x \).
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\linewidth]{Figures/codigo/funcion.png}
+    \caption[Función para calcular \(b_n \sin(nx)\)]{Fragmento de código de la función que calcula el término \(b_n \sin(nx)\).}
+    \label{fig:codigo-funcion}
+\end{figure}
+
+Para controlar el acceso concurrente a la memoria compartida, se definen dos funciones auxiliares: \texttt{down} y \texttt{up}. La función \texttt{down} realiza una operación de espera o bloqueo, decrementando el valor del semáforo. Esto indica que un proceso ha ingresado a la sección crítica. Por otro lado, la función \texttt{up} incrementa el semáforo, liberando así la sección crítica para que otro proceso pueda acceder. Estas funciones garantizan la exclusión mutua al momento de escribir en la memoria compartida.
+
+La función \texttt{Crea\_semaforo} encapsula el proceso de creación de un semáforo. Se basa en una clave generada por la función \texttt{ftok()} y lo crea con permisos de lectura y escritura para todos los usuarios. Se inicializa con un valor de 1, lo cual significa que inicialmente la sección crítica está libre.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.9\linewidth]{Figures/codigo/semaforo.png}
+    \caption[Creación del semáforo]{Fragmento de código que muestra la creación del semáforo.}
+    \label{fig:semaforo}
+\end{figure}
+
+La función \texttt{crearArchivo} se utiliza para crear archivos vacíos que posteriormente son usados por \texttt{ftok()} para generar claves únicas. Aunque no escriben información dentro del archivo, su existencia es necesaria para que \texttt{ftok()} funcione correctamente. Se crean archivos para la memoria compartida y el semáforo.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.9\linewidth]{Figures/codigo/crearArchivo.png}
+    \caption[Creación de archivos vacíos]{Fragmento de código que muestra la creación de archivos vacíos para la generación de claves.}
+    \label{fig:archivo_crear}
+\end{figure}
+
+Dentro de la función \texttt{main}, se calcula primero la cantidad de puntos de evaluación entre los valores de -3.14 y 3.14, considerando un incremento de 0.15. Esta cantidad determina el tamaño del arreglo de valores de \( x \), así como el tamaño de la memoria compartida necesaria para guardar todos los resultados. Luego, se generan las claves para la memoria y el semáforo, y se crean ambos recursos. A continuación, se calcula el arreglo de valores de \( x \) y se almacena en un arreglo auxiliar.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.9\linewidth]{Figures/codigo/x_values.png}
+    \caption[Generación de valores de \(x\)]{Cálculo de los valores de \(x\) que se usarán en la evaluación de los términos de la serie.}
+    \label{fig:x-values}
+\end{figure}
+
+Posteriormente, se crea el primer proceso hijo que escribe directamente la constante \( a_0 = 6 \) en toda la primera fila de la matriz compartida. Después, se crean otros diez procesos hijos. Cada uno de estos se encarga de calcular los valores del término \( b_n \sin(nx) \) para cada valor de \( x \). Para evitar que múltiples procesos escriban al mismo tiempo, cada proceso llama a \texttt{down} antes de escribir y a \texttt{up} después de terminar de escribir.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.9\linewidth]{Figures/codigo/procesos_hijos.png}
+    \caption[Creación y sincronización de procesos]{Código que muestra la creación de procesos hijos y el uso de semáforo para escritura sincronizada.}
+    \label{fig:procesos-hijos}
+\end{figure}
+
+
+El proceso padre se encarga de esperar a que todos los procesos hijos terminen su ejecución. Para ello, utiliza múltiples llamadas a la función \texttt{wait()}. Una vez que todos los hijos han terminado, el padre realiza la suma de todos los términos calculados para cada valor de \( x \). Esta suma se almacena en la última fila de la matriz compartida.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.9\linewidth]{Figures/codigo/suma_resultados.png}
+    \caption[Suma de los resultados y generación de archivo]{Código que suma los términos de la serie para cada valor de \( x \) y escribe los resultados en un archivo.}
+    \label{fig:suma-resultados}
+\end{figure}
+
+Finalmente, se abre un archivo CSV llamado \texttt{resultados.csv} y se imprimen en él todos los resultados, incluyendo el valor de \( x \), cada término de la serie y la suma total.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.9\linewidth]{Figures/codigo/escritura_archivo.png}
+    \caption[Escritura de resultados en archivo CSV]{Código que muestra la escritura de los resultados en un archivo CSV.}
+    \label{fig:escritura-archivo}
+\end{figure}
+
+
+Al finalizar la ejecución del programa, se imprime en la consola la matriz completa de resultados. En cada línea se muestra un valor de \(x\), seguido por los términos \(a_0\) y \(b_n \sin(nx)\) calculados por cada proceso hijo para ese punto, así como la suma total de todos los términos, que representa la aproximación de \(f(x)\) mediante la serie de Fourier. Esta visualización permite al usuario verificar que los cálculos se han realizado correctamente y apreciar el comportamiento de la aproximación en el dominio especificado.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.9\linewidth]{Figures/codigo/impresion_matriz.png}
+    \caption[Impresión de la matriz de resultados]{Código que muestra la impresión de la matriz de resultados en la consola.}
+    \label{fig:impresion-matriz}
+\end{figure}
+
+Como parte del cierre correcto del programa, se realiza la desvinculación de la memoria compartida mediante \texttt{shmdt()}, y posteriormente se elimina del sistema con \texttt{shmctl()}. Asimismo, se elimina el semáforo con \texttt{semctl()}, liberando así todos los recursos del sistema utilizados por el programa.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.9\linewidth]{Figures/codigo/cierre.png}
+    \caption[Cierre del programa y liberación de recursos]{Código que muestra el cierre del programa y la liberación de recursos.}
+    \label{fig:cierre-programa}
+\end{figure}
+
+
+\section{Análisis de la aproximación mediante serie de Fourier}
+
+Se presenta un análisis detallado de una aproximación mediante series de Fourier para la función lineal:
+
+\[
+f(x) = 6 - 4x
+\]
+
+El análisis se apoya en una hoja de cálculo que contiene diversas columnas clave para el estudio. La columna B representa los valores de \(x\), que varían desde aproximadamente \(-3.14\) hasta \(3.01\), distribuidos en incrementos regulares que permiten observar el comportamiento de la función y su aproximación punto por punto. A continuación, las columnas que van de la C a la M están dedicadas a los términos individuales de la serie de Fourier, calculados para distintos valores de \(n\) que van desde 0 hasta 10. Cada término se obtiene usando la fórmula:
+
+\[
+\text{Término}_n = \frac{8}{n} \cdot (-1)^n \cdot \sin(n \cdot x)
+\]
+
+lo cual refleja una serie formada exclusivamente por funciones seno. Esto se debe a que la función original es impar o está definida en un intervalo simétrico.
+
+La columna N muestra la suma de todos los términos de Fourier para cada valor de \(x\), lo que constituye la aproximación final de la serie a la función original. Esta suma se representa como:
+
+\[
+\text{Aproximación}(x) = \sum_{n=0}^{10} \text{Término}_n
+\]
+
+donde se van acumulando los valores individuales de los términos previamente calculados. Por otro lado, las columnas AA y AB proporcionan una referencia directa con la función original. En la columna AA se colocan nuevamente los valores de \(x\) utilizados, replicando los de la columna B, mientras que en la columna AB se calcula el valor exacto de la función \(f(x) = 6 - 4x\) para cada entrada, lo cual permite contrastar la aproximación de la serie con el valor real esperado.
+
+Al observar los resultados, se encuentra que la aproximación de la serie es especialmente precisa en los puntos cercanos al origen. Por ejemplo, cuando \(x = 0.01\), el valor aproximado es \(5.9999\), muy cercano al valor exacto de 6. En contraste, para valores extremos del intervalo, como \(x = -3.14\), la diferencia entre la aproximación y el valor exacto se vuelve considerable. En este caso, la serie devuelve un valor aproximado de \(6.1274\), mientras que el valor real de la función es \(18.56\), evidenciando una discrepancia notable.
+
+Esta diferencia creciente hacia los extremos del intervalo puede explicarse por el fenómeno de Gibbs, característico de las series de Fourier, que provoca oscilaciones cerca de discontinuidades o transiciones abruptas en funciones periódicas. A pesar de que la función analizada es lineal y continua, la representación periódica implícita en la serie introduce errores en los bordes. Además, el hecho de que solo se utilicen términos de seno confirma que se trata de una función impar o bien que ha sido definida de forma simétrica en torno al eje vertical. Finalmente, la fórmula empleada corresponde a un desarrollo típico de serie de Fourier, ampliamente utilizado en la aproximación de funciones periódicas y como herramienta fundamental en el análisis de señales y sistemas.

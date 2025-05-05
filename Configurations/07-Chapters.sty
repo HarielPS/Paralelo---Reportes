@@ -31,3 +31,9 @@
     {10pt}%
     {\minionfont\addfontfeature{LetterSpace=6}\fontsize{14}{16}\MakeUppercase} % Título en 14 puntos
 }{}
+
+\newcommand{\mychapter}[1]{%
+  \chapter*{#1}%
+  \addcontentsline{toc}{chapter}{#1}%
+  \markboth{#1}{}%
+}
