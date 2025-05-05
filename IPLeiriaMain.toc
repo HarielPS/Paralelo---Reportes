@@ -1,0 +1,36 @@
+\babel@toc {spanish}{}\relax 
+\contentsline {frontmatter}{Índice de figuras}{\es@scroman {iii}}{listoffigures}%
+\contentsline {chapter}{\numberline {1}Introducción}{1}{chapter.1}%
+\contentsline {chapter}{\numberline {2}Contexto de Serie de Fourier }{2}{chapter.2}%
+\contentsline {section}{\numberline {2.1}Forma Compleja de la Serie de Fourier}{2}{section.2.1}%
+\contentsline {section}{\numberline {2.2}Fórmula Trigonométrica de la Serie de Fourier}{3}{section.2.2}%
+\contentsline {section}{\numberline {2.3}Aplicaciones de la Serie de Fourier}{4}{section.2.3}%
+\contentsline {subsection}{\numberline {2.3.1}Aplicación en la ciencia}{4}{subsection.2.3.1}%
+\contentsline {subsection}{\numberline {2.3.2}Aplicación en la tecnología}{5}{subsection.2.3.2}%
+\contentsline {subsection}{\numberline {2.3.3}Aplicación en la ingeniería}{6}{subsection.2.3.3}%
+\contentsline {subsection}{\numberline {2.3.4}Aplicación en la Inteligencia Artificial}{7}{subsection.2.3.4}%
+\contentsline {subsection}{\numberline {2.3.5}Aplicación en el cómputo paralelo}{7}{subsection.2.3.5}%
+\contentsline {section}{\numberline {2.4}Teoría de Procesos Hijos con la Llamada al Sistema fork() en Lenguaje C}{8}{section.2.4}%
+\contentsline {subsection}{\numberline {2.4.1}Comunicación entre procesos padre e hijo}{9}{subsection.2.4.1}%
+\contentsline {subsection}{\numberline {2.4.2}Aplicaciones prácticas de fork()}{9}{subsection.2.4.2}%
+\contentsline {section}{\numberline {2.5}Teoría sobre Memoria Compartida en Lenguaje C}{10}{section.2.5}%
+\contentsline {subsection}{\numberline {2.5.1}Implementación de memoria compartida POSIX}{11}{subsection.2.5.1}%
+\contentsline {subsection}{\numberline {2.5.2}Implementación de memoria compartida System V}{11}{subsection.2.5.2}%
+\contentsline {subsection}{\numberline {2.5.3}Consideraciones prácticas en el uso de memoria compartida}{12}{subsection.2.5.3}%
+\contentsline {section}{\numberline {2.6}Teoría sobre Semáforos en Lenguaje C}{13}{section.2.6}%
+\contentsline {subsection}{\numberline {2.6.1}Semáforos POSIX}{14}{subsection.2.6.1}%
+\contentsline {subsection}{\numberline {2.6.2}Semáforos System V}{14}{subsection.2.6.2}%
+\contentsline {subsection}{\numberline {2.6.3}Patrones de uso de semáforos}{15}{subsection.2.6.3}%
+\contentsline {chapter}{\numberline {3}Soluciones individuales de series de Fourier}{17}{chapter.3}%
+\contentsline {section}{\numberline {3.1}Función resuelta por Castro Paez Ilse Yazbeth}{18}{section.3.1}%
+\contentsline {section}{\numberline {3.2}Función resuelta por Catonga Tecla Daniel Isaí}{19}{section.3.2}%
+\contentsline {section}{\numberline {3.3}Función resuelta por Padilla Sanchez Hariel }{23}{section.3.3}%
+\contentsline {section}{\numberline {3.4}Función resuelta por Olguin Castillo Víctor Manuel }{24}{section.3.4}%
+\contentsline {section}{\numberline {3.5}Programa en C para el cálculo de la serie de Fourier}{27}{section.3.5}%
+\contentsline {section}{\numberline {3.6}Análisis de la aproximación mediante serie de Fourier}{32}{section.3.6}%
+\contentsline {chapter}{\numberline {4}Conclusiones}{34}{chapter.4}%
+\contentsline {section}{\numberline {4.1}Castro Paez Ilse Yazbeth}{35}{section.4.1}%
+\contentsline {section}{\numberline {4.2}Catonga Tecla Daniel Isaí}{37}{section.4.2}%
+\contentsline {section}{\numberline {4.3}Padilla Sanchez Hariel}{40}{section.4.3}%
+\contentsline {chapter}{Anexos}{47}{chapter*.27}%
+\contentsline {chapter}{Anexos}{47}{chapter*.27}%

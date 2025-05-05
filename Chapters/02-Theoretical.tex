@@ -202,6 +202,148 @@ En la optimización de algoritmos paralelos, la serie de Fourier se emplea para 
 
 En el análisis de big data, la transformada de Fourier se aplica en el procesamiento paralelo de grandes conjuntos de datos temporales o espaciales. Por ejemplo, en astronomía, la FFT se utiliza para analizar señales de telescopios de manera distribuida, lo que permite procesar petabytes de datos en tiempo récord \cite{bracewell2003fourier}.
 
+\section{Teoría de Procesos Hijos con la Llamada al Sistema fork() en Lenguaje C}
+
+En sistemas operativos basados en UNIX, la llamada al sistema fork() es un mecanismo fundamental para la creación de procesos. Esta función permite a un proceso existente (proceso padre) crear una copia casi idéntica de sí mismo (proceso hijo), estableciendo así un modelo de concurrencia que ha sido esencial en el desarrollo de aplicaciones multiproceso. La naturaleza de fork() establece que, tras su invocación, dos procesos separados continúan la ejecución del programa: el proceso original y su copia recién creada \cite{stevens2013advanced}.
+\vspace{10pt}
+
+La singularidad de fork() radica en su comportamiento único de retorno: cuando es invocada correctamente, devuelve dos valores diferentes simultáneamente. En el proceso padre, retorna el identificador del proceso hijo (PID) recién creado, mientras que en el proceso hijo devuelve cero. Este mecanismo permite que ambos procesos determinen su rol y ejecuten código específico según su identidad. Si la llamada a fork() falla, retorna un valor negativo al proceso padre, indicando el error ocurrido \cite{kerrisk2010linux}.
+\vspace{10pt}
+
+Durante la creación del proceso hijo, el sistema operativo realiza una duplicación del espacio de memoria del proceso padre, incluyendo variables, descriptores de archivo y otros recursos. Sin embargo, esta duplicación implementa una estrategia de "copia en escritura" (copy-on-write), donde los segmentos de memoria realmente se duplican solo cuando uno de los procesos intenta modificarlos. Esta optimización mejora significativamente el rendimiento de la creación de procesos, especialmente en programas que realizan múltiples llamadas a fork() \cite{bovet2005understanding}.
+\vspace{10pt}
+
+El sistema de procesos basado en fork() constituye un paradigma fundamental en la programación de sistemas paralelos y concurrentes en entornos UNIX. A diferencia de otros modelos de concurrencia, como los hilos, los procesos creados mediante fork() operan con espacios de memoria independientes, lo que proporciona un aislamiento natural entre las ejecuciones. Esta característica resulta especialmente valiosa en aplicaciones donde la seguridad y la robustez son prioritarias, ya que un fallo en un proceso hijo no compromete la integridad del proceso padre \cite{love2013linux}.
+
+\subsection{Comunicación entre procesos padre e hijo}
+
+La comunicación entre procesos creados mediante fork() requiere mecanismos específicos de comunicación interproceso (IPC). Las tuberías (pipes) representan uno de los métodos más directos y eficientes para establecer canales de comunicación unidireccionales entre procesos relacionados. Mediante la llamada al sistema pipe(), se crean dos descriptores de archivo: uno para lectura y otro para escritura, permitiendo el intercambio de datos entre el proceso padre y sus hijos \cite{stevens2013advanced}.
+\vspace{10pt}
+
+Los valores de retorno de fork() facilitan la implementación de estrategias de comunicación efectivas. El proceso padre, conociendo el PID del hijo, puede iniciar mecanismos de sincronización como señales (signals) para coordinar la ejecución. Por su parte, el proceso hijo puede utilizar el valor cero retornado para adaptarse a su rol específico dentro del programa. Esta diferenciación permite diseñar arquitecturas de software donde cada proceso asume responsabilidades particulares dentro de una tarea global \cite{tanenbaum2015modern}.
+\vspace{10pt}
+
+El concepto de jerarquía de procesos es fundamental en la programación con fork(). En sistemas UNIX, los procesos forman una estructura arbórea donde cada proceso, excepto el proceso init (PID 1), tiene un único padre. Esta organización jerárquica facilita operaciones como la recolección del estado de finalización de procesos hijos mediante las llamadas wait() y waitpid(), permitiendo al proceso padre monitorear y responder adecuadamente a la terminación de sus hijos \cite{kerrisk2010linux}.
+\vspace{10pt}
+
+La gestión adecuada de procesos hijos creados con fork() incluye la consideración de procesos "zombies" y "huérfanos". Un proceso zombie ocurre cuando un proceso hijo termina pero su proceso padre no recoge su estado mediante wait(). Por otro lado, un proceso huérfano surge cuando el padre termina antes que el hijo, en cuyo caso el proceso init adopta automáticamente al hijo. Comprender estos escenarios es esencial para desarrollar aplicaciones multiproceso robustas que eviten fugas de recursos del sistema \cite{love2013linux}.
+
+\subsection{Aplicaciones prácticas de fork()}
+
+En servidores de red concurrentes, la llamada fork() es ampliamente utilizada para manejar múltiples conexiones simultáneas. El proceso principal acepta conexiones entrantes y crea un proceso hijo para atender cada cliente, permitiendo que el servidor continúe aceptando nuevas conexiones sin bloquearse. Este modelo, conocido como "prefork", ha sido implementado en servidores web como Apache HTTP Server, demostrando su eficacia en escenarios de alta concurrencia \cite{beej2016guide}.
+\vspace{10pt}
+
+Los intérpretes de comandos o shells en sistemas UNIX utilizan fork() para ejecutar comandos externos. Cuando un usuario introduce un comando, el shell crea un proceso hijo mediante fork() y luego utiliza exec() para reemplazar la imagen del proceso hijo con el programa solicitado. Esta combinación fork-exec constituye el paradigma fundamental para la ejecución de programas en sistemas UNIX, permitiendo al shell mantener su estado mientras ejecuta comandos externos \cite{robbins2003unix}.
+\vspace{10pt}
+
+En aplicaciones de procesamiento paralelo, fork() permite dividir tareas computacionalmente intensivas entre múltiples procesos. Cada proceso hijo puede trabajar independientemente en un subconjunto de los datos, aprovechando los sistemas multiprocesador modernos. Este enfoque se utiliza frecuentemente en análisis científicos, procesamiento de imágenes y otras aplicaciones que pueden beneficiarse de la paralelización de tareas \cite{pacheco2011introduction}.
+\vspace{10pt}
+
+La implementación de demonios (daemons) en sistemas UNIX típicamente involucra múltiples llamadas a fork(). Un demonio es un proceso que se ejecuta en segundo plano, independiente de cualquier terminal. El proceso de "daemonización" generalmente implica llamar a fork() dos veces: la primera para permitir que el padre original termine (desvinculándose de la terminal), y la segunda para evitar que el demonio se convierta en líder de sesión. Este patrón es fundamental en la implementación de servicios del sistema que operan continuamente en segundo plano \cite{stevens2005unix}.
+
+\section{Teoría sobre Memoria Compartida en Lenguaje C}
+
+La memoria compartida representa uno de los mecanismos más eficientes para la comunicación interproceso (IPC) en sistemas operativos UNIX y POSIX. A diferencia de otros métodos de IPC como tuberías o colas de mensajes, la memoria compartida permite que múltiples procesos accedan directamente a una región común del espacio de direcciones físicas, eliminando así la necesidad de copiar datos entre espacios de procesos. Esta característica la convierte en la opción preferida cuando se requiere un alto rendimiento en el intercambio de grandes volúmenes de datos \cite{stevens2013advanced}.
+\vspace{10pt}
+
+En el estándar POSIX, la memoria compartida se implementa a través de un conjunto de funciones que incluyen shm\_open(), mmap(), y shm\_unlink(). Estas funciones permiten crear, mapear y destruir segmentos de memoria compartida con una interfaz consistente y portable. En sistemas UNIX tradicionales, las funciones shmget(), shmat(), shmdt() y shmctl() proporcionan funcionalidad similar pero con un enfoque basado en el System V IPC, que sigue siendo ampliamente utilizado en muchas implementaciones \cite{kerrisk2010linux}.
+\vspace{10pt}
+
+La creación de un segmento de memoria compartida en C implica un proceso de dos pasos: primero, la obtención de un identificador para el segmento mediante shmget() o la apertura de un objeto de memoria compartida con shm\_open(); y segundo, la asociación de este segmento al espacio de direcciones del proceso mediante shmat() o mmap(). Este proceso establece una correspondencia entre un espacio de memoria física y las direcciones virtuales en los espacios de cada proceso participante \cite{robbins2003unix}.
+\vspace{10pt}
+
+El uso eficaz de la memoria compartida requiere una cuidadosa gestión para evitar condiciones de carrera y asegurar la coherencia de los datos. Dado que múltiples procesos pueden leer y escribir simultáneamente en la región compartida, es necesario implementar mecanismos de sincronización como semáforos o mutexes para coordinar el acceso. Sin una sincronización adecuada, los procesos podrían observar estados intermedios o inconsistentes de los datos, lo que conduciría a comportamientos impredecibles en la aplicación \cite{tanenbaum2015modern}.
+
+\subsection{Implementación de memoria compartida POSIX}
+
+La API de memoria compartida POSIX ofrece una interfaz moderna y portable para la gestión de regiones de memoria compartida entre procesos. La función shm\_open() crea o abre un objeto de memoria compartida, devolviendo un descriptor de archivo que puede ser utilizado con ftruncate() para ajustar su tamaño. Posteriormente, mmap() establece la correspondencia entre este objeto y el espacio de direcciones virtuales del proceso, permitiendo el acceso directo a los datos compartidos \cite{stevens2005unix}.
+\vspace{10pt}
+
+Una ventaja significativa de la interfaz POSIX es su integración con el sistema de archivos. Los objetos de memoria compartida se representan como archivos en el sistema de archivos /dev/shm, facilitando su gestión y monitoreo. Esta característica también permite aplicar permisos de acceso estándar para controlar qué procesos pueden acceder al segmento compartido, proporcionando así un nivel adicional de seguridad y control \cite{love2013linux}.
+\vspace{10pt}
+
+La liberación de recursos en el enfoque POSIX se realiza mediante las funciones munmap() para desvincular el mapeo del espacio de direcciones del proceso, y shm\_unlink() para eliminar el objeto de memoria compartida cuando ya no es necesario. Es crucial que las aplicaciones liberen adecuadamente estos recursos para evitar fugas de memoria y mantener la integridad del sistema, especialmente en programas de larga duración \cite{kerrisk2010linux}.
+\vspace{10pt}
+
+El modelo de memoria compartida POSIX ofrece compatibilidad con otras características del estándar POSIX, como los hilos pthread y mecanismos de sincronización como mutex y variables de condición. Esta coherencia en el diseño de la API facilita el desarrollo de aplicaciones que combinan múltiples técnicas de concurrencia y comunicación interproceso, adaptándose a las necesidades específicas de cada situación \cite{butenhof1997programming}.
+
+\subsection{Implementación de memoria compartida System V}
+
+El mecanismo de memoria compartida System V, introducido originalmente en UNIX System V, proporciona una interfaz robusta que ha permanecido estable durante décadas. La función shmget() crea o accede a un segmento de memoria compartida identificado por una clave IPC, generalmente generada mediante la función ftok(). Este enfoque basado en claves permite que procesos no relacionados localicen y utilicen el mismo segmento compartido sin requerir un ancestro común \cite{stevens2013advanced}.
+\vspace{10pt}
+
+Una característica distintiva de la memoria compartida System V es su integración con la infraestructura general de IPC del sistema, que incluye semáforos y colas de mensajes. Esta cohesión facilita la implementación de soluciones completas de comunicación interproceso utilizando un conjunto consistente de herramientas y conceptos. Además, las herramientas de administración del sistema como ipcs e ipcrm permiten monitorear y gestionar los recursos de IPC, incluyendo segmentos de memoria compartida \cite{robbins2003unix}.
+\vspace{10pt}
+
+El modelo de persistencia de la memoria compartida System V difiere significativamente del enfoque POSIX. Los segmentos creados mediante shmget() persisten en el sistema hasta que son explícitamente eliminados con shmctl(IPC\_RMID) o hasta que el sistema se reinicia. Esta persistencia puede ser ventajosa para servicios de larga duración, pero también requiere una gestión cuidadosa para evitar la acumulación de segmentos abandonados que consumen recursos del sistema \cite{love2013linux}.
+\vspace{10pt}
+
+La asignación y liberación de la memoria compartida en System V se gestiona mediante las funciones shmat() y shmdt(). La primera asocia el segmento al espacio de direcciones del proceso, permitiendo el acceso directo a los datos compartidos, mientras que la segunda desvincula el segmento cuando ya no es necesario. Es importante destacar que shmdt() no elimina el segmento del sistema, solo termina el acceso del proceso actual a ese segmento \cite{tanenbaum2015modern}.
+
+\subsection{Consideraciones prácticas en el uso de memoria compartida}
+
+La alineación de datos en memoria compartida es un aspecto crítico que afecta tanto al rendimiento como a la corrección del programa. Las estructuras de datos que contienen tipos de diferentes tamaños pueden tener requisitos de alineación específicos que varían entre arquitecturas. Para garantizar la portabilidad, los desarrolladores deben utilizar técnicas como el relleno explícito de estructuras o emplear directivas de compilador como \#pragma pack para controlar la alineación \cite{drepper2007every}.
+\vspace{10pt}
+
+La sincronización de caché entre múltiples procesadores representa un desafío adicional en sistemas multicore. Cuando procesos ejecutándose en diferentes núcleos acceden a la misma región de memoria compartida, pueden ocurrir inconsistencias debido a las cachés locales de cada procesador. Los sistemas modernos implementan protocolos de coherencia de caché para mitigar este problema, pero los desarrolladores deben ser conscientes de estas implicaciones, especialmente en aplicaciones de alto rendimiento \cite{herlihy2012art}.
+\vspace{10pt}
+
+La gestión del ciclo de vida de los segmentos de memoria compartida es crucial para evitar fugas de recursos y comportamientos indefinidos. En aplicaciones de producción, es esencial implementar mecanismos robustos para la limpieza de recursos, incluso en casos de terminación anormal del programa. Esto puede incluir el uso de manejadores de señales o procesos monitores que aseguren la liberación adecuada de los segmentos compartidos cuando los procesos principales terminan inesperadamente \cite{kerrisk2010linux}.
+\vspace{10pt}
+
+El rendimiento de la memoria compartida depende significativamente del patrón de acceso y la localidad de los datos. Para maximizar la eficiencia, los desarrolladores deben diseñar sus estructuras de datos para favorecer patrones de acceso que minimicen los fallos de caché y la contención entre procesos. Esto incluye técnicas como el particionamiento de datos, el padding para evitar falsos compartidos (false sharing) y la agrupación de datos frecuentemente accedidos juntos para mejorar la localidad espacial \cite{drepper2007every}.
+
+\section{Teoría sobre Semáforos en Lenguaje C}
+
+Los semáforos son primitivas de sincronización fundamentales en sistemas operativos, introducidos originalmente por Edsger Dijkstra en 1965 como una solución elegante al problema de la exclusión mutua en entornos concurrentes. En esencia, un semáforo es un contador protegido que puede ser incrementado mediante la operación signal (o V) y decrementado mediante la operación wait (o P), con la restricción de que cuando el contador llega a cero, cualquier intento adicional de decrementarlo bloqueará al proceso hasta que otro proceso incremente el contador \cite{tanenbaum2015modern}.
+\vspace{10pt}
+
+En la programación en C, existen dos interfaces principales para trabajar con semáforos: la interfaz POSIX (IEEE Std 1003.1) y la interfaz System V. Ambas implementaciones proporcionan funcionalidad similar pero con diferencias sintácticas y semánticas significativas. La interfaz POSIX, con funciones como sem\_open(), sem\_wait() y sem\_post(), ofrece una API más moderna y portable, mientras que la interfaz System V con semget(), semop() y semctl() conserva su relevancia histórica y sigue siendo ampliamente utilizada \cite{stevens2013advanced}.
+\vspace{10pt}
+
+Los semáforos se clasifican generalmente en dos tipos: semáforos binarios y semáforos contadores. Los semáforos binarios, también conocidos como mutex, solo pueden tomar los valores 0 y 1, y se utilizan principalmente para proteger secciones críticas de código garantizando el acceso exclusivo. Por otro lado, los semáforos contadores pueden tomar valores enteros no negativos arbitrarios y son útiles para gestionar recursos limitados, como conexiones a bases de datos o elementos en un buffer de tamaño fijo \cite{kerrisk2010linux}.
+\vspace{10pt}
+
+La correcta implementación y uso de semáforos es crucial para evitar problemas clásicos de concurrencia como interbloqueos (deadlocks), inanición (starvation) y condiciones de carrera (race conditions). Un interbloqueo puede ocurrir cuando dos o más procesos esperan indefinidamente por recursos que están siendo retenidos entre ellos, mientras que la inanición sucede cuando un proceso nunca obtiene acceso al recurso debido a la continua priorización de otros procesos. La programación defensiva con semáforos requiere un diseño cuidadoso y la aplicación de técnicas como la adquisición ordenada de recursos para evitar estos problemas \cite{herlihy2012art}.
+
+\subsection{Semáforos POSIX}
+
+La API de semáforos POSIX está diseñada para integrase coherentemente con otras facilidades de concurrencia POSIX, como hilos (pthreads) y memoria compartida. Los semáforos POSIX se dividen en dos categorías: semáforos con nombre (named semaphores), creados mediante sem\_open() y vinculados a un nombre en el sistema de archivos, y semáforos sin nombre (unnamed semaphores), inicializados con sem\_init() en una región de memoria compartida entre procesos relacionados \cite{butenhof1997programming}.
+\vspace{10pt}
+
+Las operaciones fundamentales sobre semáforos POSIX incluyen sem\_wait(), que decrementa el valor del semáforo o bloquea si el valor es cero; sem\_post(), que incrementa el valor del semáforo y potencialmente desbloquea procesos en espera; y sem\_trywait(), que proporciona una versión no bloqueante de sem\_wait(). Estas operaciones son atómicas, garantizando que no ocurrirán interrupciones durante su ejecución que puedan comprometer la integridad del semáforo \cite{stevens2005unix}.
+\vspace{10pt}
+
+Un aspecto valioso de los semáforos POSIX es su capacidad para implementar diversos patrones de sincronización. Por ejemplo, utilizando múltiples semáforos es posible construir barreras de sincronización, donde varios procesos esperan hasta que todos hayan alcanzado un punto determinado antes de continuar. También pueden implementarse soluciones al problema del productor-consumidor, donde un proceso produce datos que otro consume, requiriendo coordinación para evitar desbordamientos o subdesbordamientos en el buffer compartido \cite{love2013linux}.
+\vspace{10pt}
+
+La limpieza adecuada de los recursos de semáforos es esencial para evitar fugas. Para semáforos con nombre, sem\_close() libera los recursos asociados en el proceso actual, mientras que sem\_unlink() elimina el semáforo del sistema. Para semáforos sin nombre, sem\_destroy() libera los recursos cuando el semáforo ya no es necesario. Estas operaciones deben realizarse meticulosamente, especialmente en aplicaciones de larga duración o en sistemas con recursos limitados \cite{kerrisk2010linux}.
+
+\subsection{Semáforos System V}
+
+Los semáforos System V ofrecen una interfaz robusta con capacidades avanzadas, aunque con una sintaxis más compleja que su contraparte POSIX. Una característica distintiva es que los semáforos System V se crean en conjuntos mediante la función semget(), permitiendo la manipulación eficiente de múltiples semáforos relacionados como una unidad. Cada conjunto de semáforos se identifica por una clave única, generalmente generada mediante la función ftok() \cite{stevens2013advanced}.
+\vspace{10pt}
+
+La operación sobre semáforos System V se realiza principalmente a través de la función semop(), que permite ejecutar múltiples operaciones en diferentes semáforos del conjunto de forma atómica. Esta atomicidad a nivel de conjunto es particularmente valiosa para implementar protocolos de sincronización complejos, como la prevención de interbloqueos mediante la adquisición simultánea de múltiples recursos. Además, semop() admite la especificación de banderas como SEM\_UNDO, que automáticamente revierte las operaciones si el proceso termina mientras aún mantiene recursos \cite{robbins2003unix}.
+\vspace{10pt}
+
+El control y administración de los semáforos System V se realiza mediante la función semctl(), que proporciona una amplia gama de operaciones como inicialización (SETVAL), consulta de valores (GETVAL), y eliminación de conjuntos de semáforos (IPC\_RMID). Esta función también permite manipular atributos específicos del sistema IPC, como permisos de acceso y propietarios, facilitando la implementación de políticas de seguridad en entornos multiusuario \cite{love2013linux}.
+\vspace{10pt}
+
+Una consideración importante con los semáforos System V es su persistencia en el sistema. A diferencia de muchos otros recursos que se liberan automáticamente cuando un proceso termina, los conjuntos de semáforos System V persisten hasta que son explícitamente eliminados con semctl(IPC\_RMID) o hasta que el sistema se reinicia. Esta característica puede ser beneficiosa para implementar servicios persistentes, pero también requiere una gestión diligente para evitar la acumulación de recursos huérfanos \cite{tanenbaum2015modern}.
+
+\subsection{Patrones de uso de semáforos}
+
+El patrón de exclusión mutua es quizás el uso más común de los semáforos, garantizando que solo un proceso a la vez pueda acceder a un recurso compartido o ejecutar una sección crítica. La implementación consiste en inicializar un semáforo con valor 1, ejecutar sem\_wait() antes de entrar a la sección crítica y sem\_post() al salir. Este patrón es fundamental para mantener la consistencia de los datos compartidos y prevenir condiciones de carrera \cite{herlihy2012art}.
+\vspace{10pt}
+
+El problema clásico del productor-consumidor ilustra el uso de semáforos para coordinar procesos con roles complementarios. En esta solución, tres semáforos gestionan la sincronización: uno para la exclusión mutua en el acceso al buffer, otro para contar los espacios disponibles y un tercero para contar los elementos en el buffer. Este patrón se aplica ampliamente en sistemas con procesamiento por lotes, colas de mensajes y pipelines de procesamiento \cite{silberschatz2018operating}.
+\vspace{10pt}
+
+La implementación de barreras de sincronización representa otro patrón común, donde varios procesos deben alcanzar un punto específico antes de que cualquiera pueda continuar. Utilizando un semáforo combinado con un contador protegido, es posible crear un mecanismo donde N procesos esperan hasta que todos hayan llegado a la barrera. Este patrón es especialmente útil en computación paralela, donde diferentes etapas de un algoritmo requieren la finalización completa de etapas anteriores antes de continuar \cite{pacheco2011introduction}.
+\vspace{10pt}
+
+Los semáforos también pueden implementar soluciones al problema de los lectores-escritores, donde múltiples procesos pueden leer simultáneamente un recurso compartido, pero la escritura requiere acceso exclusivo. Esta implementación utiliza típicamente múltiples semáforos para rastrear el número de lectores activos y controlar el acceso de los escritores. La correcta gestión de estos semáforos es crucial para evitar la inanición de escritores, un problema común donde los escritores nunca obtienen acceso debido a un flujo continuo de lectores \cite{silberschatz2018operating}.
 
 
 }
