@@ -1,190 +1,94 @@
-#include<stdio.h>
-#include<stdlib.h>
-#include<unistd.h>
-#include<sys/ipc.h>
-#include<sys/shm.h>
-#include<sys/sem.h>
-#include<sys/wait.h>
-#include<math.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <math.h>
+#include <pthread.h>
 
 #define INICIO 3.14
 #define FIN -3.14
 #define PASO 0.15
-#define PERMISOS 0666
-#define ITERACION 10
 #define COLUMNAS 12
 
-// Permiso	Acceso del dueño	Grupo	Otros
-// 0600	     rw-	         ---	---
-// 0666	     rw-	         rw-	rw-
-// 0644	     rw-	         r--	r--
-// 0777	     rwx	         rwx	rwx inseguro
+int numero_elementos;
+double matriz_resultados[COLUMNAS][42]; 
+double valores_paso[42]; // 43 elementos para el rango de -3.14 a 3.14 con paso de 0.15
 
-// Estructura de archivo en memoria
-// n	     n1	     n2      ... 	suma de fila
-// 6	     0.02	         ...	---
-// 6	     1.20	         ...	---
-// 6	     2.37	         ...	---
-// ...	     ...	         ...	--- 
-
-// definir funcion de Fourier
-double  funcion(int n, double  x)
-{
-    double seno;
-    seno=sin(n*x);
-    return (double )((8.0000/n)* pow(-1,n) * seno);
+double funcion(int n, double x) {
+    return (8.0 / n) * pow(-1, n) * sin(n * x);
 }
 
-// Funciones para el semaforo
-void down(int semid) {
-    struct sembuf op = {0, -1, 0};
-    semop(semid, &op, 1);
-}
+typedef struct {
+    int n;  // fila que calculara el hilo
+} hilo_args_t;
 
-void up(int semid) {
-    struct sembuf op = {0, 1, 0};
-    semop(semid, &op, 1);
-}
+void *calcular_fila(void *arg) {
+    hilo_args_t *args = (hilo_args_t *)arg;
+    int n = args->n;
 
-// Crear Semaforo
-int Crea_semaforo(key_t llave,int valor_inicial)
-{
-   int semid=semget(llave,1,IPC_CREAT|PERMISOS);
-   if(semid==-1)
-   {
-      return -1;
-   }
-   semctl(semid,0,SETVAL,valor_inicial);
-   return semid;
-}
-
-void crearArchivo(const char *nombreArchivo) {
-    FILE *archivo = fopen(nombreArchivo, "w");
-    if (archivo == NULL) {
-        perror("No se pudo crear el archivo");
-        exit(1);
-    }
-    fclose(archivo);
-}
-
-
-int main(int argc, char *argv[])
-{
-    pid_t hijos[COLUMNAS];
-    int numero_elementos = (int)(((INICIO - FIN) / PASO) + 1);
-    int a0 = 6;
-    double  valores_paso[numero_elementos];
-    double  valor_actual;
-    int indice = 0;
-    int tam_memoria = COLUMNAS * numero_elementos * sizeof(double );
-
-
-    crearArchivo("fourier");
-    crearArchivo("semaforo_general");
-    key_t clave_resultados = ftok("fourier", 66);
-    key_t clave_semaforo_general = ftok("semaforo_general", 66);
-
-    // Creamos el semaforo
-    int semaforo_general = Crea_semaforo(clave_semaforo_general, 1);
-
-    if (semaforo_general == -1) {
-        perror("Error al crear el semáforo");
-        exit(1);
-    }
-
-    // Creamos la memoria compartida
-    int id_matriz = shmget(clave_resultados, tam_memoria, IPC_CREAT|PERMISOS);
-    if (id_matriz == -1) {
-        perror("Error al crear memoria compartida");
-        exit(1);
-    }
-
-    // Puntero a la memoria compartida
-    double  (*matriz_resultados)[numero_elementos];
-    matriz_resultados = (double  (*)[numero_elementos]) shmat(id_matriz, NULL, 0);
-    if (matriz_resultados == (void *)-1) {
-        perror("Error al enlazar memoria");
-        exit(1);
-    }
-
-    // Generamos valores de paso
-    for (valor_actual = FIN; valor_actual <= INICIO; valor_actual += PASO) {
-        if (indice < numero_elementos) {
-          valores_paso[indice] = valor_actual;
-          indice++;
-        }
-    }
-
-    // Primer hijo para n=0 valor constante de 6
-    hijos[0] = fork(); 
-    if (hijos[0] == 0) {
-        // Proceso hijo
+    if (n == 0) {
         for (int i = 0; i < numero_elementos; i++) {
-            matriz_resultados[0][i] = a0;
+            matriz_resultados[0][i] = 6.0;
         }
-        exit(0);
-    }
-
-    // Generamos los demas hijos valores de n
-    for (int n = 1; n < (COLUMNAS - 1 ); n++) {
-        hijos[n] = fork();
-        if (hijos[n] == 0) {
-            for (int i = 0; i < numero_elementos; i++) {
-                double  x = valores_paso[i];
-                double  bn = funcion(n, x);
-    
-                down(semaforo_general);
-                matriz_resultados[n][i] = bn;
-                // printf("n = %d, x = %.2f, bn = %.4f\n", n, x, bn);
-                up(semaforo_general);
-            }
-            shmdt(matriz_resultados);
-            exit(0);
+    } else {
+        for (int i = 0; i < numero_elementos; i++) {
+            double x = valores_paso[i];
+            matriz_resultados[n][i] = funcion(n, x);
         }
     }
 
-    // Esperamos a que terminen los hijos
+    free(args);  // liberar memoria del struct
+    pthread_exit(NULL);
+}
+
+int main() {
+    int indice = 0;
+    for (double valor = FIN; valor <= INICIO; valor += PASO) {
+        valores_paso[indice++] = valor;
+    }
+    numero_elementos = indice;
+
+    pthread_t hilos[COLUMNAS - 1];
+
+    for (int n = 0; n < COLUMNAS - 1; n++) {
+        hilo_args_t *args = malloc(sizeof(hilo_args_t));
+        args->n = n;
+        if (pthread_create(&hilos[n], NULL, calcular_fila, args) != 0) {
+            perror("Error al crear hilo");
+            exit(EXIT_FAILURE);
+        }
+    }
+
     for (int i = 0; i < COLUMNAS - 1; i++) {
-        wait(NULL);
-    }    
-    
-    // Se calcula la suma de los resultados
-    for (int i = 0; i < numero_elementos; i++) {
-        double  suma = 0.0;
-        for (int fila = 0; fila < COLUMNAS - 1; fila++) {
-            suma += matriz_resultados[fila][i];
-        }
-        matriz_resultados[11][i] = suma;
-    }
-    
-    FILE *archivo = fopen("resultados.csv", "w");
-    if (archivo == NULL) {
-        perror("Error al crear archivo CSV");
-        exit(1);
+        pthread_join(hilos[i], NULL);
     }
 
-    
-    // Se imprime la matriz resultados
+    // Calcular suma final en la ultima fila
+    for (int i = 0; i < numero_elementos; i++) {
+        double suma = 0.0;
+        for (int j = 0; j < COLUMNAS - 1; j++) {
+            suma += matriz_resultados[j][i];
+        }
+        matriz_resultados[COLUMNAS - 1][i] = suma;
+    }
+
+    // Imprimir resultado
+    FILE *archivo = fopen("resultados.csv", "w");
+    if (!archivo) {
+        perror("Error al abrir resultados.csv");
+        exit(EXIT_FAILURE);
+    }
+
     printf("Matriz Resultados:\n");
     for (int j = 0; j < numero_elementos; j++) {
         printf("%.2f ", valores_paso[j]);
         fprintf(archivo, "%.2f", valores_paso[j]);
         for (int i = 0; i < COLUMNAS; i++) {
-            fprintf(archivo, ",%.4f", matriz_resultados[i][j]);
             printf("%.4f ", matriz_resultados[i][j]);
+            fprintf(archivo, ",%.4f", matriz_resultados[i][j]);
         }
         printf("\n");
         fprintf(archivo, "\n");
     }
-    fclose(archivo);
-    
 
-    // Desvinculamos la memoria compartida
-    if (shmdt(matriz_resultados) == -1) {
-        perror("Error al desvincular memoria compartida");
-        exit(1);
-    }
-    shmctl(id_matriz, IPC_RMID, NULL);
-    semctl(semaforo_general, 0, IPC_RMID);
+    fclose(archivo);
     return 0;
 }

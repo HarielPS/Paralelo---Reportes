@@ -231,28 +231,107 @@ Como parte del cierre correcto del programa, se realiza la desvinculación de la
 
 \section{Análisis de la aproximación mediante serie de Fourier}
 
-Se presenta un análisis detallado de una aproximación mediante series de Fourier para la función lineal:
+Se presenta un análisis sobre la aproximación mediante series de Fourier para la función lineal:
 
+\[f(x) = 6 - 4x\]
+
+
+El analisis se apoya en los calculos de la serie de fourier realizados por el estudiante Padilla Sanchez Hariel \ref{fig:figure-hariel-01} y \ref{fig:figure-hariel-02}. La función \(f(x)\) es lineal y se define en el intervalo \([-3.14, 3.14]\). La serie de Fourier para esta función se expresa como:
+
+\[\text{Término}_n = \frac{8}{n} \cdot (-1)^n \cdot \sin(n \cdot x)\]
+
+Una vez calculados los coeficientes \(a_0\) y \(b_n\), se procede a la evaluación de la serie en un rango de valores de \(x\). De primera mano se realizaron calculos en el intervalos sobre la ecuacion \[f(x) = 6 - 4x\] esto nos dara una recta lineal, posterior a ello durante la fase 2 se realizaron los calculos de la serie de fourier en una hoja de excel, donde se implementaron las fórmulas necesarias para calcular los términos de la serie y finalmente se realizaron los calculos con el programa en C usando memoria compartida y semáforos para la sincronización de procesos como se muestra en \ref{fig:impresion-matriz}.
+
+Se juntaron los resultados obtenidos de la hoja de excel y del programa en C, y se graficaron en la figura \ref{fig:grafica-fase3}. En esta gráfica se observa que la ecuacio nos muestra una funcion lineal en la recta naranja, mientras que las series de fourier calculadas en el intervalo tanto como en el excel como se muestra pintada en azul, y el programa en C pintada en verde, nos muestran una aproximacion a la funcion lineal, sin embargo, se puede observar que la serie de fourier tiene mucha similitud a las funcion sin embargo en la parte de los extremos se puede observar que la serie de fourier no logra aproximarse a la funcion lineal, esto es debido a que la serie de fourier es una aproximacion de la funcion en un intervalo cerrado, y al ser una funcion lineal no tiene un periodo definido, por lo que la serie de fourier no logra aproximarse a la funcion en su totalidad.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.9\linewidth]{Figures/fase3/grafica_fase3.png}
+    \caption[Grafica de resultados sobre los calculos en excel y el codigo C.]{Grafica de resultados sobre los calculos en excel y el codigo C.}
+    \label{fig:grafica-fase3}
+\end{figure}
+
+%-------------------------------------------- Fase 4
+\section{Programa en C para el cálculo de la serie de Fourier usando hilos}
+
+En esta fase se desarrolló un programa en lenguaje C que implementa el cálculo de la serie de Fourier para la función $f(x) = 6 - 4x$ utilizando programación paralela con hilos mediante la biblioteca \texttt{pthread}. A diferencia de las fases anteriores en las que se usaron procesos hijos y mecanismos de sincronización como semáforos, los hilos permiten una forma más sencilla de compartir memoria y comunicación entre tareas paralelas, ya que todos los hilos comparten el mismo espacio de direcciones dentro del proceso principal. Esto reduce la complejidad y el uso de estructuras adicionales para el intercambio de información.
+
+El programa inicia con la inclusión de bibliotecas esenciales para su funcionamiento. Se utiliza \texttt{stdio.h} para las operaciones de entrada y salida como impresión por pantalla y escritura en archivos. \texttt{stdlib.h} se usa para funciones relacionadas con la administración de memoria dinámica. \texttt{math.h} se emplea para funciones matemáticas como \texttt{sin()} y \texttt{pow()} que son necesarias para calcular los términos de la serie. Finalmente, \texttt{pthread.h} es crucial para manejar la creación, ejecución y sincronización de los hilos. La inclusión de estas bibliotecas asegura que el programa pueda realizar correctamente todas las operaciones necesarias para el cálculo paralelo de la serie de Fourier.
+
+Las constantes definidas al inicio del programa delimitan el comportamiento del mismo. Se declara \texttt{INICIO} con un valor de 3.14 y \texttt{FIN} con -3.14, indicando que el intervalo de evaluación de la función se realiza simétricamente alrededor del cero. El paso, definido por la constante \texttt{PASO}, se establece en 0.15, determinando la resolución del muestreo de $x$. La constante \texttt{COLUMNAS} se define como 12, pues considera una fila para el valor $a_0$, diez filas para los términos $b_n \sin(nx)$ desde $n = 1$ hasta $n = 10$, y una fila adicional para almacenar la suma total de todos los términos, que representa el valor aproximado de $f(x)$ en cada punto.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.9\linewidth]{Figures/fase4/librerias_fase4.png}
+    \caption{Fragmento de código donde se incluyen las bibliotecas y se definen las constantes utilizadas.}
+    \label{fig:librerias-fase4}
+\end{figure}
+
+La función principal del programa tiene como responsabilidad inicial determinar cuántos puntos se evaluarán en el intervalo definido. Esto se logra calculando el número de pasos de $x$ a través de la fórmula: 
 \[
-f(x) = 6 - 4x
+\texttt{filas} = \frac{|\texttt{INICIO} - \texttt{FIN}|}{\texttt{PASO}} + 1
 \]
+El resultado determina la cantidad de columnas de la matriz bidimensional donde se almacenarán los resultados, ya que cada columna representará un valor diferente de $x$.
 
-El análisis se apoya en una hoja de cálculo que contiene diversas columnas clave para el estudio. La columna B representa los valores de \(x\), que varían desde aproximadamente \(-3.14\) hasta \(3.01\), distribuidos en incrementos regulares que permiten observar el comportamiento de la función y su aproximación punto por punto. A continuación, las columnas que van de la C a la M están dedicadas a los términos individuales de la serie de Fourier, calculados para distintos valores de \(n\) que van desde 0 hasta 10. Cada término se obtiene usando la fórmula:
+Se define una estructura llamada \texttt{hilo\_args\_t} que encapsula la información que cada hilo necesita para realizar su cálculo de forma independiente. Esta estructura contiene un puntero a la matriz compartida de resultados, el índice del término que le corresponde al hilo (por ejemplo, si se trata de $a_0$, $b_1\sin(x)$, $b_2\sin(2x)$, etc.), el número total de filas y el valor del paso. Gracias a los hilos compartir memoria con el hilo principal, no se requiere el uso de memoria compartida explícita, lo que simplifica el diseño del programa.
 
-\[
-\text{Término}_n = \frac{8}{n} \cdot (-1)^n \cdot \sin(n \cdot x)
-\]
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.9\linewidth]{Figures/fase4/estructura_fase4.png}
+    \caption{Definición de la estructura utilizada para pasar parámetros a cada hilo.}
+    \label{fig:estructura-fase4}
+\end{figure}
 
-lo cual refleja una serie formada exclusivamente por funciones seno. Esto se debe a que la función original es impar o está definida en un intervalo simétrico.
+Cada hilo ejecuta la función \texttt{calcular\_fila}, que es responsable de llenar una fila específica de la matriz. Si el índice recibido es 0, el hilo escribe el valor constante $a_0 = 6$ en toda la fila. En caso contrario, se calcula el valor de $b_n$ según la fórmula $b_n = \frac{8}{n}(-1)^n$ y se evalúa $b_n \sin(nx)$ para cada valor de $x$ en el intervalo definido. La variable $x$ se actualiza a partir del índice de la fila y el valor de paso, es decir, $x = \texttt{INICIO} - i \cdot \texttt{PASO}$. Este diseño permite que cada hilo trabaje de forma independiente sobre una porción distinta del resultado final.
 
-La columna N muestra la suma de todos los términos de Fourier para cada valor de \(x\), lo que constituye la aproximación final de la serie a la función original. Esta suma se representa como:
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.9\linewidth]{Figures/fase4/calcular_fila_fase4.png}
+    \caption{Función que calcula cada fila de la matriz con base en el índice del hilo.}
+    \label{fig:calcular-fila-fase4}
+\end{figure}
 
-\[
-\text{Aproximación}(x) = \sum_{n=0}^{10} \text{Término}_n
-\]
+Una vez definida la función que ejecuta cada hilo, en la función principal se crean 12 hilos correspondientes a cada fila de la matriz. A cada hilo se le asigna una instancia de la estructura de parámetros, se inicializa con los valores necesarios y se invoca usando \texttt{pthread\_create}. Posteriormente, se usa \texttt{pthread\_join} para esperar la finalización de cada hilo antes de continuar, asegurando que todos los resultados estén correctamente calculados antes de proceder al siguiente paso.
 
-donde se van acumulando los valores individuales de los términos previamente calculados. Por otro lado, las columnas AA y AB proporcionan una referencia directa con la función original. En la columna AA se colocan nuevamente los valores de \(x\) utilizados, replicando los de la columna B, mientras que en la columna AB se calcula el valor exacto de la función \(f(x) = 6 - 4x\) para cada entrada, lo cual permite contrastar la aproximación de la serie con el valor real esperado.
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.9\linewidth]{Figures/fase4/hilos_fase4.png}
+    \caption{Fragmento del código que muestra la creación y sincronización de los hilos.}
+    \label{fig:hilos-fase4}
+\end{figure}
 
-Al observar los resultados, se encuentra que la aproximación de la serie es especialmente precisa en los puntos cercanos al origen. Por ejemplo, cuando \(x = 0.01\), el valor aproximado es \(5.9999\), muy cercano al valor exacto de 6. En contraste, para valores extremos del intervalo, como \(x = -3.14\), la diferencia entre la aproximación y el valor exacto se vuelve considerable. En este caso, la serie devuelve un valor aproximado de \(6.1274\), mientras que el valor real de la función es \(18.56\), evidenciando una discrepancia notable.
+Después de que todos los hilos han terminado su ejecución, se calcula la suma total por columnas, almacenando el resultado en la última fila de la matriz. Esta fila representa la aproximación de la función $f(x)$ mediante la suma de los 11 términos de la serie de Fourier evaluados para cada valor de $x$. La matriz se recorre iterativamente sumando el valor correspondiente de cada fila (excepto la última) para cada columna, y el resultado se guarda en la posición correspondiente de la fila final.
 
-Esta diferencia creciente hacia los extremos del intervalo puede explicarse por el fenómeno de Gibbs, característico de las series de Fourier, que provoca oscilaciones cerca de discontinuidades o transiciones abruptas en funciones periódicas. A pesar de que la función analizada es lineal y continua, la representación periódica implícita en la serie introduce errores en los bordes. Además, el hecho de que solo se utilicen términos de seno confirma que se trata de una función impar o bien que ha sido definida de forma simétrica en torno al eje vertical. Finalmente, la fórmula empleada corresponde a un desarrollo típico de serie de Fourier, ampliamente utilizado en la aproximación de funciones periódicas y como herramienta fundamental en el análisis de señales y sistemas.
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.9\linewidth]{Figures/fase4/suma_total_fase4.png}
+    \caption{Código encargado de calcular la suma total de la serie de Fourier en cada punto.}
+    \label{fig:suma-total-fase4}
+\end{figure}
+
+Una vez completados todos los cálculos, los resultados se escriben en un archivo CSV llamado \texttt{resultado\_hilos.csv}. Cada fila del archivo corresponde a un término de la serie (incluyendo la suma total), y cada columna representa un valor de $x$. Este archivo puede ser utilizado posteriormente para generar gráficas comparativas o para su análisis en herramientas como Excel o Python.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.9\linewidth]{Figures/fase4/guardar_csv_fase4.png}
+    \caption{Fragmento de código encargado de guardar los resultados en un archivo CSV.}
+    \label{fig:guardar-csv-fase4}
+\end{figure}
+
+Además del archivo CSV, el programa también imprime los resultados en la terminal, mostrando para cada valor de $x$ el valor aproximado de $f(x)$ obtenido mediante la suma de la serie de Fourier. Esta salida permite verificar rápidamente si los resultados parecen razonables sin necesidad de abrir el archivo de salida.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.9\linewidth]{Figures/fase4/mostrar_terminal_fase4.png}
+    \caption{Impresión de los resultados aproximados de $f(x)$ en la terminal.}
+    \label{fig:mostrar-terminal-fase4}
+\end{figure}
+
+Finalmente, se observa una gráfica comparativa entre las tres fases implementadas: la primera con una función lineal, la segunda con los valores de excel, la tercera con procesos y la cuarta con hilos. En esta gráfica se representa el valor original de la función $f(x) = 6 - 4x$ y las aproximaciones obtenidas en cada fase. Se observa que, tanto los resultado generados en la fase 2 calculados por medio de excel, los valores de la fase 3 con procesos y los de la fase 4 con hilos, todos son iguales y asu vez se aproximan a la función original.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.9\linewidth]{Figures/fase4/grafica_comparativa_fase4.png}
+    \caption{Comparativa gráfica entre el valor real de la función y las aproximaciones de las fases 2, 3 y 4.}
+    \label{fig:grafica-comparativa-fase4}
+\end{figure}
