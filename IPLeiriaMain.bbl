@@ -1,0 +1,1275 @@
+% $ biblatex auxiliary file $
+% $ biblatex bbl format version 3.2 $
+% Do not modify the above lines!
+%
+% This is an auxiliary file used by the 'biblatex' package.
+% This file may safely be deleted. It will be recreated by
+% biber as required.
+%
+\begingroup
+\makeatletter
+\@ifundefined{ver@biblatex.sty}
+  {\@latex@error
+     {Missing 'biblatex' package}
+     {The bibliography requires the 'biblatex' package.}
+      \aftergroup\endinput}
+  {}
+\endgroup
+
+
+\refsection{0}
+  \datalist[entry]{nyt/global//global/global}
+    \entry{thompson2017interferometry}{book}{}
+      \name{author}{2}{}{%
+        {{hash=bffa0b5b3d43e05f88767aad809a185b}{%
+           family={A.\bibnamedelimi R.\bibnamedelimi Thompson},
+           familyi={A\bibinitperiod\bibinitdelim R\bibinitperiod\bibinitdelim T\bibinitperiod},
+           given={J.\bibnamedelimi M.\bibnamedelimi Moran},
+           giveni={J\bibinitperiod\bibinitdelim M\bibinitperiod\bibinitdelim M\bibinitperiod}}}%
+        {{hash=fdc1bf8a3898aca80209ffc81adfd22e}{%
+           family={Swenson},
+           familyi={S\bibinitperiod},
+           given={G.\bibnamedelimi W.},
+           giveni={G\bibinitperiod\bibinitdelim W\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {Springer}%
+      }
+      \strng{namehash}{e6002a308de042ecf0715016dc9db9ff}
+      \strng{fullhash}{e6002a308de042ecf0715016dc9db9ff}
+      \strng{bibnamehash}{e6002a308de042ecf0715016dc9db9ff}
+      \strng{authorbibnamehash}{e6002a308de042ecf0715016dc9db9ff}
+      \strng{authornamehash}{e6002a308de042ecf0715016dc9db9ff}
+      \strng{authorfullhash}{e6002a308de042ecf0715016dc9db9ff}
+      \field{sortinit}{A}
+      \field{sortinithash}{2f401846e2029bad6b3ecc16d50031e2}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{Interferometry and Synthesis in Radio Astronomy}
+      \field{year}{2017}
+    \endentry
+    \entry{Arenas2014}{article}{}
+      \name{author}{5}{}{%
+        {{hash=a79eccf2d7d79c5ee186e514a2df241d}{%
+           family={Arenas},
+           familyi={A\bibinitperiod},
+           given={Alberto},
+           giveni={A\bibinitperiod}}}%
+        {{hash=80fdddfdfa8bd2d7dd640a211b333f95}{%
+           family={Ciaurri},
+           familyi={C\bibinitperiod},
+           given={Óscar},
+           giveni={Ó\bibinitperiod}}}%
+        {{hash=54b9ec100895d34a77669c2af82922fe}{%
+           family={Labarga},
+           familyi={L\bibinitperiod},
+           given={Edgar},
+           giveni={E\bibinitperiod}}}%
+        {{hash=e1d8fd87da25e9e75d24e91fb421042a}{%
+           family={Roncal},
+           familyi={R\bibinitperiod},
+           given={Luz},
+           giveni={L\bibinitperiod}}}%
+        {{hash=0c9000a24513d51b2aca60828002cc82}{%
+           family={Varona},
+           familyi={V\bibinitperiod},
+           given={Juan\bibnamedelima Luis},
+           giveni={J\bibinitperiod\bibinitdelim L\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {Logroño}%
+      }
+      \strng{namehash}{0180aaa89e8bb89f77ecdc29a9f5345d}
+      \strng{fullhash}{e15c8aa34642dcdbccfd1d346999e0f5}
+      \strng{bibnamehash}{e15c8aa34642dcdbccfd1d346999e0f5}
+      \strng{authorbibnamehash}{e15c8aa34642dcdbccfd1d346999e0f5}
+      \strng{authornamehash}{0180aaa89e8bb89f77ecdc29a9f5345d}
+      \strng{authorfullhash}{e15c8aa34642dcdbccfd1d346999e0f5}
+      \field{sortinit}{A}
+      \field{sortinithash}{2f401846e2029bad6b3ecc16d50031e2}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Monográfico}
+      \field{title}{Series de Fourier no trigonométricas: Una perspectiva familiar}
+      \field{volume}{26}
+      \field{year}{2014}
+      \field{pages}{39\bibrangedash 54}
+      \range{pages}{16}
+      \verb{urlraw}
+      \verb https://www.unirioja.es/cu/jvarona/downloads/Fourier-familiar.pdf
+      \endverb
+      \verb{url}
+      \verb https://www.unirioja.es/cu/jvarona/downloads/Fourier-familiar.pdf
+      \endverb
+    \endentry
+    \entry{banwell1994fundamentals}{book}{}
+      \name{author}{2}{}{%
+        {{hash=b0debf789e897244ab1ddcd5e6df38f8}{%
+           family={Banwell},
+           familyi={B\bibinitperiod},
+           given={C.N.},
+           giveni={C\bibinitperiod}}}%
+        {{hash=dea30cd7ba40d7f9b609102dc721afd8}{%
+           family={McCash},
+           familyi={M\bibinitperiod},
+           given={E.M.},
+           giveni={E\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {McGraw-Hill}%
+      }
+      \strng{namehash}{944c8a9f0ae8bee781ca62ae0799bd80}
+      \strng{fullhash}{944c8a9f0ae8bee781ca62ae0799bd80}
+      \strng{bibnamehash}{944c8a9f0ae8bee781ca62ae0799bd80}
+      \strng{authorbibnamehash}{944c8a9f0ae8bee781ca62ae0799bd80}
+      \strng{authornamehash}{944c8a9f0ae8bee781ca62ae0799bd80}
+      \strng{authorfullhash}{944c8a9f0ae8bee781ca62ae0799bd80}
+      \field{sortinit}{B}
+      \field{sortinithash}{d7095fff47cda75ca2589920aae98399}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{edition}{4th}
+      \field{title}{Fundamentals of Molecular Spectroscopy}
+      \field{year}{1994}
+    \endentry
+    \entry{benbarka2021seeing}{article}{}
+      \name{author}{3}{}{%
+        {{hash=da4ae7e430a8dc247dc90e7c5b3fd664}{%
+           family={Benbarka},
+           familyi={B\bibinitperiod},
+           given={Nadine},
+           giveni={N\bibinitperiod}}}%
+        {{hash=c107bbd317cd780c2aa7006dbe61d83f}{%
+           family={Navab},
+           familyi={N\bibinitperiod},
+           given={Nassir},
+           giveni={N\bibinitperiod}}}%
+        {{hash=06815fe56b71d1d09d3192cea22b9a97}{%
+           family={Busam},
+           familyi={B\bibinitperiod},
+           given={Benjamin},
+           giveni={B\bibinitperiod}}}%
+      }
+      \strng{namehash}{2e6063ddcd02e4ac43ae3d9fea7f2d95}
+      \strng{fullhash}{5bab725266f82e6b7619e2092718723f}
+      \strng{bibnamehash}{5bab725266f82e6b7619e2092718723f}
+      \strng{authorbibnamehash}{5bab725266f82e6b7619e2092718723f}
+      \strng{authornamehash}{2e6063ddcd02e4ac43ae3d9fea7f2d95}
+      \strng{authorfullhash}{5bab725266f82e6b7619e2092718723f}
+      \field{sortinit}{B}
+      \field{sortinithash}{d7095fff47cda75ca2589920aae98399}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{arXiv preprint arXiv:2103.12091}
+      \field{title}{Seeing Behind Objects for 3D Multi-Object Tracking in RGB-D Sequences}
+      \field{year}{2021}
+      \verb{urlraw}
+      \verb https://arxiv.org/pdf/2103.12091
+      \endverb
+      \verb{url}
+      \verb https://arxiv.org/pdf/2103.12091
+      \endverb
+    \endentry
+    \entry{bovet2005understanding}{book}{}
+      \name{author}{2}{}{%
+        {{hash=4e6ca956728eb9b26ad462fad9dacebd}{%
+           family={Bovet},
+           familyi={B\bibinitperiod},
+           given={D.P.},
+           giveni={D\bibinitperiod}}}%
+        {{hash=6176f6b4412f69e77474b086d0602918}{%
+           family={Cesati},
+           familyi={C\bibinitperiod},
+           given={M.},
+           giveni={M\bibinitperiod}}}%
+      }
+      \list{location}{1}{%
+        {Sebastopol, CA}%
+      }
+      \list{publisher}{1}{%
+        {O'Reilly Media}%
+      }
+      \strng{namehash}{a98d08854c8f941be39faef502dc8019}
+      \strng{fullhash}{a98d08854c8f941be39faef502dc8019}
+      \strng{bibnamehash}{a98d08854c8f941be39faef502dc8019}
+      \strng{authorbibnamehash}{a98d08854c8f941be39faef502dc8019}
+      \strng{authornamehash}{a98d08854c8f941be39faef502dc8019}
+      \strng{authorfullhash}{a98d08854c8f941be39faef502dc8019}
+      \field{sortinit}{B}
+      \field{sortinithash}{d7095fff47cda75ca2589920aae98399}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{edition}{3rd}
+      \field{title}{Understanding the Linux Kernel}
+      \field{year}{2005}
+    \endentry
+    \entry{box2015time}{book}{}
+      \name{author}{3}{}{%
+        {{hash=002f69bf140cceda97f81a168d86ceec}{%
+           family={Box},
+           familyi={B\bibinitperiod},
+           given={G.E.P.},
+           giveni={G\bibinitperiod}}}%
+        {{hash=a0765e65803ed454754a1b3f26407854}{%
+           family={Jenkins},
+           familyi={J\bibinitperiod},
+           given={G.M.},
+           giveni={G\bibinitperiod}}}%
+        {{hash=890ac6c53704408120341a7b27124947}{%
+           family={Reinsel},
+           familyi={R\bibinitperiod},
+           given={G.C.},
+           giveni={G\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {Wiley}%
+      }
+      \strng{namehash}{2e310a48494ae36d869a6e554983f748}
+      \strng{fullhash}{60cc2f3e976e99f3fa8d831f87a07ffd}
+      \strng{bibnamehash}{60cc2f3e976e99f3fa8d831f87a07ffd}
+      \strng{authorbibnamehash}{60cc2f3e976e99f3fa8d831f87a07ffd}
+      \strng{authornamehash}{2e310a48494ae36d869a6e554983f748}
+      \strng{authorfullhash}{60cc2f3e976e99f3fa8d831f87a07ffd}
+      \field{sortinit}{B}
+      \field{sortinithash}{d7095fff47cda75ca2589920aae98399}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{edition}{5th}
+      \field{title}{Time Series Analysis: Forecasting and Control}
+      \field{year}{2015}
+    \endentry
+    \entry{boyd2004convex}{book}{}
+      \name{author}{2}{}{%
+        {{hash=fdb760b740da8a080df12615e128118d}{%
+           family={Boyd},
+           familyi={B\bibinitperiod},
+           given={S.},
+           giveni={S\bibinitperiod}}}%
+        {{hash=4cd2161e2c45c5dbcd6247642d0d2361}{%
+           family={Vandenberghe},
+           familyi={V\bibinitperiod},
+           given={L.},
+           giveni={L\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {Cambridge University Press}%
+      }
+      \strng{namehash}{02ee23bd5f57a80d54b50b65e3500a84}
+      \strng{fullhash}{02ee23bd5f57a80d54b50b65e3500a84}
+      \strng{bibnamehash}{02ee23bd5f57a80d54b50b65e3500a84}
+      \strng{authorbibnamehash}{02ee23bd5f57a80d54b50b65e3500a84}
+      \strng{authornamehash}{02ee23bd5f57a80d54b50b65e3500a84}
+      \strng{authorfullhash}{02ee23bd5f57a80d54b50b65e3500a84}
+      \field{sortinit}{B}
+      \field{sortinithash}{d7095fff47cda75ca2589920aae98399}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{Convex Optimization}
+      \field{year}{2004}
+    \endentry
+    \entry{bracewell2003fourier}{book}{}
+      \name{author}{1}{}{%
+        {{hash=1391391d22c701b41d0c2f3041e9269e}{%
+           family={Bracewell},
+           familyi={B\bibinitperiod},
+           given={R.N.},
+           giveni={R\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {McGraw-Hill}%
+      }
+      \strng{namehash}{1391391d22c701b41d0c2f3041e9269e}
+      \strng{fullhash}{1391391d22c701b41d0c2f3041e9269e}
+      \strng{bibnamehash}{1391391d22c701b41d0c2f3041e9269e}
+      \strng{authorbibnamehash}{1391391d22c701b41d0c2f3041e9269e}
+      \strng{authornamehash}{1391391d22c701b41d0c2f3041e9269e}
+      \strng{authorfullhash}{1391391d22c701b41d0c2f3041e9269e}
+      \field{sortinit}{B}
+      \field{sortinithash}{d7095fff47cda75ca2589920aae98399}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{edition}{3rd}
+      \field{title}{The Fourier Transform and Its Applications}
+      \field{year}{2003}
+    \endentry
+    \entry{butenhof1997programming}{book}{}
+      \name{author}{1}{}{%
+        {{hash=9111132be4e573d4aee4fd2f1a1585b2}{%
+           family={Butenhof},
+           familyi={B\bibinitperiod},
+           given={D.R.},
+           giveni={D\bibinitperiod}}}%
+      }
+      \list{location}{1}{%
+        {Boston, MA}%
+      }
+      \list{publisher}{1}{%
+        {Addison-Wesley Professional}%
+      }
+      \strng{namehash}{9111132be4e573d4aee4fd2f1a1585b2}
+      \strng{fullhash}{9111132be4e573d4aee4fd2f1a1585b2}
+      \strng{bibnamehash}{9111132be4e573d4aee4fd2f1a1585b2}
+      \strng{authorbibnamehash}{9111132be4e573d4aee4fd2f1a1585b2}
+      \strng{authornamehash}{9111132be4e573d4aee4fd2f1a1585b2}
+      \strng{authorfullhash}{9111132be4e573d4aee4fd2f1a1585b2}
+      \field{sortinit}{B}
+      \field{sortinithash}{d7095fff47cda75ca2589920aae98399}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{Programming with POSIX Threads}
+      \field{year}{1997}
+    \endentry
+    \entry{canuto2006spectral}{book}{}
+      \name{author}{2}{}{%
+        {{hash=664d527bbd41eb7dd8b4b72e79b1cd49}{%
+           family={C.\bibnamedelimi Canuto},
+           familyi={C\bibinitperiod\bibinitdelim C\bibinitperiod},
+           given={A.\bibnamedelimi Quarteroni},
+           giveni={A\bibinitperiod\bibinitdelim Q\bibinitperiod},
+           suffix={M.\bibnamedelimi Y.\bibnamedelimi Hussaini},
+           suffixi={M\bibinitperiod\bibinitdelim Y\bibinitperiod\bibinitdelim H\bibinitperiod}}}%
+        {{hash=d34e8f2c690fd8ed8c21d48788454c56}{%
+           family={Zang},
+           familyi={Z\bibinitperiod},
+           given={T.\bibnamedelimi A.},
+           giveni={T\bibinitperiod\bibinitdelim A\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {Springer}%
+      }
+      \strng{namehash}{6f3b4d4cbc5a92316f1142f8f703a373}
+      \strng{fullhash}{6f3b4d4cbc5a92316f1142f8f703a373}
+      \strng{bibnamehash}{6f3b4d4cbc5a92316f1142f8f703a373}
+      \strng{authorbibnamehash}{6f3b4d4cbc5a92316f1142f8f703a373}
+      \strng{authornamehash}{6f3b4d4cbc5a92316f1142f8f703a373}
+      \strng{authorfullhash}{6f3b4d4cbc5a92316f1142f8f703a373}
+      \field{sortinit}{C}
+      \field{sortinithash}{4d103a86280481745c9c897c925753c0}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{Spectral Methods: Fundamentals in Single Domains}
+      \field{year}{2006}
+    \endentry
+    \entry{choi2023matematicas}{article}{}
+      \name{author}{5}{}{%
+        {{hash=121f7d50f20faec29b2bb0c4e657f0d9}{%
+           family={Choi},
+           familyi={C\bibinitperiod},
+           given={Jaewon},
+           giveni={J\bibinitperiod}}}%
+        {{hash=57f7f0240f141850db99567185d1a24c}{%
+           family={Zhang},
+           familyi={Z\bibinitperiod},
+           given={Cheng},
+           giveni={C\bibinitperiod}}}%
+        {{hash=db81f64524e1711a9c923b4ea2164b00}{%
+           family={Anderegg},
+           familyi={A\bibinitperiod},
+           given={Lucas},
+           giveni={L\bibinitperiod}}}%
+        {{hash=540b98b0f45aa1fed9a28bd57312dfd6}{%
+           family={Willcox},
+           familyi={W\bibinitperiod},
+           given={Karen},
+           giveni={K\bibinitperiod}}}%
+        {{hash=652768fc415935cb81439f4c2d4ec6b6}{%
+           family={Duraisamy},
+           familyi={D\bibinitperiod},
+           given={Karthik},
+           giveni={K\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {Annual Reviews}%
+      }
+      \strng{namehash}{eb8bee19301d37b158a3ab60933159db}
+      \strng{fullhash}{161f8c87d4269d660400c7fb8207136a}
+      \strng{bibnamehash}{161f8c87d4269d660400c7fb8207136a}
+      \strng{authorbibnamehash}{161f8c87d4269d660400c7fb8207136a}
+      \strng{authornamehash}{eb8bee19301d37b158a3ab60933159db}
+      \strng{authorfullhash}{161f8c87d4269d660400c7fb8207136a}
+      \field{sortinit}{C}
+      \field{sortinithash}{4d103a86280481745c9c897c925753c0}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Annual Review of Fluid Mechanics}
+      \field{title}{Mathematics of Deep Learning for Fluid Dynamics}
+      \field{volume}{55}
+      \field{year}{2023}
+      \field{pages}{575\bibrangedash 608}
+      \range{pages}{34}
+      \verb{urlraw}
+      \verb https://doi.org/10.1146/annurev-fluid-032822-025843
+      \endverb
+      \verb{url}
+      \verb https://doi.org/10.1146/annurev-fluid-032822-025843
+      \endverb
+    \endentry
+    \entry{chopra2017dynamics}{book}{}
+      \name{author}{1}{}{%
+        {{hash=17760bb55835831494d7abe0a6189794}{%
+           family={Chopra},
+           familyi={C\bibinitperiod},
+           given={A.K.},
+           giveni={A\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {Pearson}%
+      }
+      \strng{namehash}{17760bb55835831494d7abe0a6189794}
+      \strng{fullhash}{17760bb55835831494d7abe0a6189794}
+      \strng{bibnamehash}{17760bb55835831494d7abe0a6189794}
+      \strng{authorbibnamehash}{17760bb55835831494d7abe0a6189794}
+      \strng{authornamehash}{17760bb55835831494d7abe0a6189794}
+      \strng{authorfullhash}{17760bb55835831494d7abe0a6189794}
+      \field{sortinit}{C}
+      \field{sortinithash}{4d103a86280481745c9c897c925753c0}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{edition}{5th}
+      \field{title}{Dynamics of Structures: Theory and Applications to Earthquake Engineering}
+      \field{year}{2017}
+    \endentry
+    \entry{cullity2014elements}{book}{}
+      \name{author}{2}{}{%
+        {{hash=381a87a0ac1c7336c9343ac57d754305}{%
+           family={Cullity},
+           familyi={C\bibinitperiod},
+           given={B.D.},
+           giveni={B\bibinitperiod}}}%
+        {{hash=e9776418d1caea01917fc6b3aefe195a}{%
+           family={Stock},
+           familyi={S\bibinitperiod},
+           given={S.R.},
+           giveni={S\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {Pearson}%
+      }
+      \strng{namehash}{c4f588658d947883367cf33e82a0728f}
+      \strng{fullhash}{c4f588658d947883367cf33e82a0728f}
+      \strng{bibnamehash}{c4f588658d947883367cf33e82a0728f}
+      \strng{authorbibnamehash}{c4f588658d947883367cf33e82a0728f}
+      \strng{authornamehash}{c4f588658d947883367cf33e82a0728f}
+      \strng{authorfullhash}{c4f588658d947883367cf33e82a0728f}
+      \field{sortinit}{C}
+      \field{sortinithash}{4d103a86280481745c9c897c925753c0}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{edition}{3rd}
+      \field{title}{Elements of X-Ray Diffraction}
+      \field{year}{2014}
+    \endentry
+    \entry{drepper2007every}{article}{}
+      \name{author}{1}{}{%
+        {{hash=949834eb485ccf963284108d06e32bed}{%
+           family={Drepper},
+           familyi={D\bibinitperiod},
+           given={U.},
+           giveni={U\bibinitperiod}}}%
+      }
+      \strng{namehash}{949834eb485ccf963284108d06e32bed}
+      \strng{fullhash}{949834eb485ccf963284108d06e32bed}
+      \strng{bibnamehash}{949834eb485ccf963284108d06e32bed}
+      \strng{authorbibnamehash}{949834eb485ccf963284108d06e32bed}
+      \strng{authornamehash}{949834eb485ccf963284108d06e32bed}
+      \strng{authorfullhash}{949834eb485ccf963284108d06e32bed}
+      \field{sortinit}{D}
+      \field{sortinithash}{6f385f66841fb5e82009dc833c761848}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Red Hat, Inc.}
+      \field{title}{Every Computer Scientist Should Know About Memory}
+      \field{year}{2007}
+    \endentry
+    \entry{gonzalez2017digital}{book}{}
+      \name{author}{2}{}{%
+        {{hash=7cb8f4e89c09d4f4c4835040456dec30}{%
+           family={Gonzalez},
+           familyi={G\bibinitperiod},
+           given={R.\bibnamedelimi C.},
+           giveni={R\bibinitperiod\bibinitdelim C\bibinitperiod}}}%
+        {{hash=c79d2a30ab5768295699433d91681131}{%
+           family={Woods},
+           familyi={W\bibinitperiod},
+           given={R.\bibnamedelimi E.},
+           giveni={R\bibinitperiod\bibinitdelim E\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {Pearson}%
+      }
+      \strng{namehash}{7e252c070638d1c9df5ecac3310a3d9e}
+      \strng{fullhash}{7e252c070638d1c9df5ecac3310a3d9e}
+      \strng{bibnamehash}{7e252c070638d1c9df5ecac3310a3d9e}
+      \strng{authorbibnamehash}{7e252c070638d1c9df5ecac3310a3d9e}
+      \strng{authornamehash}{7e252c070638d1c9df5ecac3310a3d9e}
+      \strng{authorfullhash}{7e252c070638d1c9df5ecac3310a3d9e}
+      \field{sortinit}{G}
+      \field{sortinithash}{32d67eca0634bf53703493fb1090a2e8}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{Digital Image Processing}
+      \field{year}{2017}
+    \endentry
+    \entry{goodfellow2016deep}{book}{}
+      \name{author}{3}{}{%
+        {{hash=97448a3cf6f5cb771679d00efeb7782c}{%
+           family={Goodfellow},
+           familyi={G\bibinitperiod},
+           given={I.},
+           giveni={I\bibinitperiod}}}%
+        {{hash=419350ebbeb4eba5351469f378dee007}{%
+           family={Bengio},
+           familyi={B\bibinitperiod},
+           given={Y.},
+           giveni={Y\bibinitperiod}}}%
+        {{hash=0162d284c680646fe3354338106399ce}{%
+           family={Courville},
+           familyi={C\bibinitperiod},
+           given={A.},
+           giveni={A\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {MIT Press}%
+      }
+      \strng{namehash}{cbdf0636afcc58dfa09b4e1be9870f56}
+      \strng{fullhash}{046a68a306553a04a7fa3dbd33c044bb}
+      \strng{bibnamehash}{046a68a306553a04a7fa3dbd33c044bb}
+      \strng{authorbibnamehash}{046a68a306553a04a7fa3dbd33c044bb}
+      \strng{authornamehash}{cbdf0636afcc58dfa09b4e1be9870f56}
+      \strng{authorfullhash}{046a68a306553a04a7fa3dbd33c044bb}
+      \field{sortinit}{G}
+      \field{sortinithash}{32d67eca0634bf53703493fb1090a2e8}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{Deep Learning}
+      \field{year}{2016}
+    \endentry
+    \entry{griffiths2018introduction}{book}{}
+      \name{author}{2}{}{%
+        {{hash=ca66bbf3ab1a52eadeefc36dc52dc408}{%
+           family={Griffiths},
+           familyi={G\bibinitperiod},
+           given={D.J.},
+           giveni={D\bibinitperiod}}}%
+        {{hash=e5a1e53ee207a195153a2c26cbb4c999}{%
+           family={Schroeter},
+           familyi={S\bibinitperiod},
+           given={D.F.},
+           giveni={D\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {Cambridge University Press}%
+      }
+      \strng{namehash}{7df17e07d4aba5dee14e62b5b0a5cfa9}
+      \strng{fullhash}{7df17e07d4aba5dee14e62b5b0a5cfa9}
+      \strng{bibnamehash}{7df17e07d4aba5dee14e62b5b0a5cfa9}
+      \strng{authorbibnamehash}{7df17e07d4aba5dee14e62b5b0a5cfa9}
+      \strng{authornamehash}{7df17e07d4aba5dee14e62b5b0a5cfa9}
+      \strng{authorfullhash}{7df17e07d4aba5dee14e62b5b0a5cfa9}
+      \field{sortinit}{G}
+      \field{sortinithash}{32d67eca0634bf53703493fb1090a2e8}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{edition}{3rd}
+      \field{title}{Introduction to Quantum Mechanics}
+      \field{year}{2018}
+    \endentry
+    \entry{haacke2014magnetic}{book}{}
+      \name{author}{4}{}{%
+        {{hash=b00328680427940da2dba87dc81ce31f}{%
+           family={Haacke},
+           familyi={H\bibinitperiod},
+           given={E.M.},
+           giveni={E\bibinitperiod}}}%
+        {{hash=2ec3b852ac22f3074ee8308c5c1d510b}{%
+           family={Brown},
+           familyi={B\bibinitperiod},
+           given={R.W.},
+           giveni={R\bibinitperiod}}}%
+        {{hash=aa69211f9f17d9cd5ad816dd0000a078}{%
+           family={Thompson},
+           familyi={T\bibinitperiod},
+           given={M.R.},
+           giveni={M\bibinitperiod}}}%
+        {{hash=177893902fdbda542c333640e5c4a0fb}{%
+           family={Venkatesan},
+           familyi={V\bibinitperiod},
+           given={R.},
+           giveni={R\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {Wiley}%
+      }
+      \strng{namehash}{257a39878b0796316b19fa0f1ecf1c1a}
+      \strng{fullhash}{57740f211a848d0bc582a4089a4cc771}
+      \strng{bibnamehash}{57740f211a848d0bc582a4089a4cc771}
+      \strng{authorbibnamehash}{57740f211a848d0bc582a4089a4cc771}
+      \strng{authornamehash}{257a39878b0796316b19fa0f1ecf1c1a}
+      \strng{authorfullhash}{57740f211a848d0bc582a4089a4cc771}
+      \field{sortinit}{H}
+      \field{sortinithash}{23a3aa7c24e56cfa16945d55545109b5}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{edition}{2nd}
+      \field{title}{Magnetic Resonance Imaging: Physical Principles and Sequence Design}
+      \field{year}{2014}
+    \endentry
+    \entry{beej2016guide}{book}{}
+      \name{author}{1}{}{%
+        {{hash=c68fb35e07f67dbcd0afe08e0cc05709}{%
+           family={Hall},
+           familyi={H\bibinitperiod},
+           given={B.},
+           giveni={B\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {Independently published}%
+      }
+      \strng{namehash}{c68fb35e07f67dbcd0afe08e0cc05709}
+      \strng{fullhash}{c68fb35e07f67dbcd0afe08e0cc05709}
+      \strng{bibnamehash}{c68fb35e07f67dbcd0afe08e0cc05709}
+      \strng{authorbibnamehash}{c68fb35e07f67dbcd0afe08e0cc05709}
+      \strng{authornamehash}{c68fb35e07f67dbcd0afe08e0cc05709}
+      \strng{authorfullhash}{c68fb35e07f67dbcd0afe08e0cc05709}
+      \field{sortinit}{H}
+      \field{sortinithash}{23a3aa7c24e56cfa16945d55545109b5}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{Beej's Guide to Network Programming: Using Internet Sockets}
+      \field{year}{2016}
+    \endentry
+    \entry{haykin2001communication}{book}{}
+      \name{author}{2}{}{%
+        {{hash=a82c75a42f733f690fc4303be716c96b}{%
+           family={Haykin},
+           familyi={H\bibinitperiod},
+           given={S.},
+           giveni={S\bibinitperiod}}}%
+        {{hash=e73423471bc9c323ffe4683442137e36}{%
+           family={Moher},
+           familyi={M\bibinitperiod},
+           given={M.},
+           giveni={M\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {Wiley}%
+      }
+      \strng{namehash}{d580a9d4cd7b397d230d923501e19396}
+      \strng{fullhash}{d580a9d4cd7b397d230d923501e19396}
+      \strng{bibnamehash}{d580a9d4cd7b397d230d923501e19396}
+      \strng{authorbibnamehash}{d580a9d4cd7b397d230d923501e19396}
+      \strng{authornamehash}{d580a9d4cd7b397d230d923501e19396}
+      \strng{authorfullhash}{d580a9d4cd7b397d230d923501e19396}
+      \field{sortinit}{H}
+      \field{sortinithash}{23a3aa7c24e56cfa16945d55545109b5}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{Communication Systems}
+      \field{year}{2001}
+    \endentry
+    \entry{herlihy2012art}{book}{}
+      \name{author}{2}{}{%
+        {{hash=02d0e566fddc28196c8d3a1143763cbc}{%
+           family={Herlihy},
+           familyi={H\bibinitperiod},
+           given={M.},
+           giveni={M\bibinitperiod}}}%
+        {{hash=582dba714279331ad6342fdff4155197}{%
+           family={Shavit},
+           familyi={S\bibinitperiod},
+           given={N.},
+           giveni={N\bibinitperiod}}}%
+      }
+      \list{location}{1}{%
+        {Burlington, MA}%
+      }
+      \list{publisher}{1}{%
+        {Morgan Kaufmann}%
+      }
+      \strng{namehash}{fbf8f75de41651dcb694e71177dfd536}
+      \strng{fullhash}{fbf8f75de41651dcb694e71177dfd536}
+      \strng{bibnamehash}{fbf8f75de41651dcb694e71177dfd536}
+      \strng{authorbibnamehash}{fbf8f75de41651dcb694e71177dfd536}
+      \strng{authornamehash}{fbf8f75de41651dcb694e71177dfd536}
+      \strng{authorfullhash}{fbf8f75de41651dcb694e71177dfd536}
+      \field{sortinit}{H}
+      \field{sortinithash}{23a3aa7c24e56cfa16945d55545109b5}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{edition}{Revised 1st}
+      \field{title}{The Art of Multiprocessor Programming}
+      \field{year}{2012}
+    \endentry
+    \entry{inman2001engineering}{book}{}
+      \name{author}{1}{}{%
+        {{hash=91490e782002f9d8f76cd963aa329179}{%
+           family={Inman},
+           familyi={I\bibinitperiod},
+           given={D.\bibnamedelimi J.},
+           giveni={D\bibinitperiod\bibinitdelim J\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {Prentice-Hall}%
+      }
+      \strng{namehash}{91490e782002f9d8f76cd963aa329179}
+      \strng{fullhash}{91490e782002f9d8f76cd963aa329179}
+      \strng{bibnamehash}{91490e782002f9d8f76cd963aa329179}
+      \strng{authorbibnamehash}{91490e782002f9d8f76cd963aa329179}
+      \strng{authornamehash}{91490e782002f9d8f76cd963aa329179}
+      \strng{authorfullhash}{91490e782002f9d8f76cd963aa329179}
+      \field{sortinit}{I}
+      \field{sortinithash}{8d291c51ee89b6cd86bf5379f0b151d8}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{Engineering Vibration}
+      \field{year}{2001}
+    \endentry
+    \entry{kerrisk2010linux}{book}{}
+      \name{author}{1}{}{%
+        {{hash=3bbbf07c489de8eb8e8bcb508f60d503}{%
+           family={Kerrisk},
+           familyi={K\bibinitperiod},
+           given={M.},
+           giveni={M\bibinitperiod}}}%
+      }
+      \list{location}{1}{%
+        {San Francisco, CA}%
+      }
+      \list{publisher}{1}{%
+        {No Starch Press}%
+      }
+      \strng{namehash}{3bbbf07c489de8eb8e8bcb508f60d503}
+      \strng{fullhash}{3bbbf07c489de8eb8e8bcb508f60d503}
+      \strng{bibnamehash}{3bbbf07c489de8eb8e8bcb508f60d503}
+      \strng{authorbibnamehash}{3bbbf07c489de8eb8e8bcb508f60d503}
+      \strng{authornamehash}{3bbbf07c489de8eb8e8bcb508f60d503}
+      \strng{authorfullhash}{3bbbf07c489de8eb8e8bcb508f60d503}
+      \field{sortinit}{K}
+      \field{sortinithash}{c02bf6bff1c488450c352b40f5d853ab}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{The Linux Programming Interface: A Linux and UNIX System Programming Handbook}
+      \field{year}{2010}
+    \endentry
+    \entry{vanloan1992computational}{book}{}
+      \name{author}{1}{}{%
+        {{hash=523a10203e60122b967dc3e1d3762cf3}{%
+           family={Loan},
+           familyi={L\bibinitperiod},
+           given={C.\bibnamedelimi Van},
+           giveni={C\bibinitperiod\bibinitdelim V\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {SIAM}%
+      }
+      \strng{namehash}{523a10203e60122b967dc3e1d3762cf3}
+      \strng{fullhash}{523a10203e60122b967dc3e1d3762cf3}
+      \strng{bibnamehash}{523a10203e60122b967dc3e1d3762cf3}
+      \strng{authorbibnamehash}{523a10203e60122b967dc3e1d3762cf3}
+      \strng{authornamehash}{523a10203e60122b967dc3e1d3762cf3}
+      \strng{authorfullhash}{523a10203e60122b967dc3e1d3762cf3}
+      \field{sortinit}{L}
+      \field{sortinithash}{7c47d417cecb1f4bd38d1825c427a61a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{Computational Frameworks for the Fast Fourier Transform}
+      \field{year}{1992}
+    \endentry
+    \entry{love2013linux}{book}{}
+      \name{author}{1}{}{%
+        {{hash=2716e80b99ab44d63f50300bfb213d81}{%
+           family={Love},
+           familyi={L\bibinitperiod},
+           given={R.},
+           giveni={R\bibinitperiod}}}%
+      }
+      \list{location}{1}{%
+        {Sebastopol, CA}%
+      }
+      \list{publisher}{1}{%
+        {O'Reilly Media}%
+      }
+      \strng{namehash}{2716e80b99ab44d63f50300bfb213d81}
+      \strng{fullhash}{2716e80b99ab44d63f50300bfb213d81}
+      \strng{bibnamehash}{2716e80b99ab44d63f50300bfb213d81}
+      \strng{authorbibnamehash}{2716e80b99ab44d63f50300bfb213d81}
+      \strng{authornamehash}{2716e80b99ab44d63f50300bfb213d81}
+      \strng{authorfullhash}{2716e80b99ab44d63f50300bfb213d81}
+      \field{sortinit}{L}
+      \field{sortinithash}{7c47d417cecb1f4bd38d1825c427a61a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{edition}{2nd}
+      \field{title}{Linux System Programming: Talking Directly to the Kernel and C Library}
+      \field{year}{2013}
+    \endentry
+    \entry{mcgranghan2017power}{book}{}
+      \name{author}{3}{}{%
+        {{hash=b5bbdd56765e1b15f844f629a5c777b9}{%
+           family={McGranghan},
+           familyi={M\bibinitperiod},
+           given={M.F.},
+           giveni={M\bibinitperiod}}}%
+        {{hash=5bb3fe338334fe75ec361041d60eaa69}{%
+           family={Mueller},
+           familyi={M\bibinitperiod},
+           given={D.R.},
+           giveni={D\bibinitperiod}}}%
+        {{hash=af6c62a9c011e89e62686492ec7d00b7}{%
+           family={Samotyj},
+           familyi={S\bibinitperiod},
+           given={M.J.},
+           giveni={M\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {McGraw-Hill}%
+      }
+      \strng{namehash}{f0cd0283a2484d247f9f0c3a0b88b44e}
+      \strng{fullhash}{40e8e1174cb80247e27f29679ba6284b}
+      \strng{bibnamehash}{40e8e1174cb80247e27f29679ba6284b}
+      \strng{authorbibnamehash}{40e8e1174cb80247e27f29679ba6284b}
+      \strng{authornamehash}{f0cd0283a2484d247f9f0c3a0b88b44e}
+      \strng{authorfullhash}{40e8e1174cb80247e27f29679ba6284b}
+      \field{sortinit}{M}
+      \field{sortinithash}{4625c616857f13d17ce56f7d4f97d451}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{Power Quality in Electrical Systems}
+      \field{year}{2017}
+    \endentry
+    \entry{metin2004biomedical}{book}{}
+      \name{author}{1}{}{%
+        {{hash=2f6c3e56b45beb7cf6490e334e0fa323}{%
+           family={Metin},
+           familyi={M\bibinitperiod},
+           given={A.},
+           giveni={A\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {Academic Press}%
+      }
+      \strng{namehash}{2f6c3e56b45beb7cf6490e334e0fa323}
+      \strng{fullhash}{2f6c3e56b45beb7cf6490e334e0fa323}
+      \strng{bibnamehash}{2f6c3e56b45beb7cf6490e334e0fa323}
+      \strng{authorbibnamehash}{2f6c3e56b45beb7cf6490e334e0fa323}
+      \strng{authornamehash}{2f6c3e56b45beb7cf6490e334e0fa323}
+      \strng{authorfullhash}{2f6c3e56b45beb7cf6490e334e0fa323}
+      \field{sortinit}{M}
+      \field{sortinithash}{4625c616857f13d17ce56f7d4f97d451}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{Biomedical Signal Processing: A Conceptual Approach}
+      \field{year}{2004}
+    \endentry
+    \entry{moreland2003fft}{inproceedings}{}
+      \name{author}{2}{}{%
+        {{hash=08771fdabda1f2a71eb43fc8e55ca354}{%
+           family={Moreland},
+           familyi={M\bibinitperiod},
+           given={K.},
+           giveni={K\bibinitperiod}}}%
+        {{hash=ece40508e445569ee13698d6c2ed6d2b}{%
+           family={Angel},
+           familyi={A\bibinitperiod},
+           given={E.},
+           giveni={E\bibinitperiod}}}%
+      }
+      \strng{namehash}{13623a150320b4b2bd11b93b8db8907e}
+      \strng{fullhash}{13623a150320b4b2bd11b93b8db8907e}
+      \strng{bibnamehash}{13623a150320b4b2bd11b93b8db8907e}
+      \strng{authorbibnamehash}{13623a150320b4b2bd11b93b8db8907e}
+      \strng{authornamehash}{13623a150320b4b2bd11b93b8db8907e}
+      \strng{authorfullhash}{13623a150320b4b2bd11b93b8db8907e}
+      \field{sortinit}{M}
+      \field{sortinithash}{4625c616857f13d17ce56f7d4f97d451}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{booktitle}{Proceedings of the ACM Workshop on Graphics Hardware}
+      \field{title}{The FFT on a GPU}
+      \field{year}{2003}
+      \field{pages}{112\bibrangedash 119}
+      \range{pages}{8}
+    \endentry
+    \entry{DiagoNanez2023}{thesis}{}
+      \name{author}{1}{}{%
+        {{hash=eab8d27f218fb0c91193fdaccdfe8e41}{%
+           family={Nañez},
+           familyi={N\bibinitperiod},
+           given={Paola\bibnamedelima Diago},
+           giveni={P\bibinitperiod\bibinitdelim D\bibinitperiod}}}%
+      }
+      \list{institution}{1}{%
+        {Facultad de Ciencias Matemáticas}%
+      }
+      \strng{namehash}{eab8d27f218fb0c91193fdaccdfe8e41}
+      \strng{fullhash}{eab8d27f218fb0c91193fdaccdfe8e41}
+      \strng{bibnamehash}{eab8d27f218fb0c91193fdaccdfe8e41}
+      \strng{authorbibnamehash}{eab8d27f218fb0c91193fdaccdfe8e41}
+      \strng{authornamehash}{eab8d27f218fb0c91193fdaccdfe8e41}
+      \strng{authorfullhash}{eab8d27f218fb0c91193fdaccdfe8e41}
+      \field{sortinit}{N}
+      \field{sortinithash}{22369a73d5f88983a108b63f07f37084}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{month}{9}
+      \field{note}{Tutora: María del Mar Jiménez Sevilla}
+      \field{title}{Series de Fourier}
+      \field{type}{Trabajo Fin de Grado}
+      \field{year}{2023}
+    \endentry
+    \entry{nielsen2010quantum}{book}{}
+      \name{author}{2}{}{%
+        {{hash=17279793dcf098cfda8570111ee5cfd9}{%
+           family={Nielsen},
+           familyi={N\bibinitperiod},
+           given={M.\bibnamedelimi A.},
+           giveni={M\bibinitperiod\bibinitdelim A\bibinitperiod}}}%
+        {{hash=8af57cd4248e7e6549aa291aa9bd3b56}{%
+           family={Chuang},
+           familyi={C\bibinitperiod},
+           given={I.\bibnamedelimi L.},
+           giveni={I\bibinitperiod\bibinitdelim L\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {Cambridge University Press}%
+      }
+      \strng{namehash}{f41c5acd8ed5ba44574134c269bdca5a}
+      \strng{fullhash}{f41c5acd8ed5ba44574134c269bdca5a}
+      \strng{bibnamehash}{f41c5acd8ed5ba44574134c269bdca5a}
+      \strng{authorbibnamehash}{f41c5acd8ed5ba44574134c269bdca5a}
+      \strng{authornamehash}{f41c5acd8ed5ba44574134c269bdca5a}
+      \strng{authorfullhash}{f41c5acd8ed5ba44574134c269bdca5a}
+      \field{sortinit}{N}
+      \field{sortinithash}{22369a73d5f88983a108b63f07f37084}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{Quantum Computation and Quantum Information}
+      \field{year}{2010}
+    \endentry
+    \entry{ogata2010modern}{book}{}
+      \name{author}{1}{}{%
+        {{hash=edfede3a3dbf15b6db59a7193329b974}{%
+           family={Ogata},
+           familyi={O\bibinitperiod},
+           given={K.},
+           giveni={K\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {Prentice Hall}%
+      }
+      \strng{namehash}{edfede3a3dbf15b6db59a7193329b974}
+      \strng{fullhash}{edfede3a3dbf15b6db59a7193329b974}
+      \strng{bibnamehash}{edfede3a3dbf15b6db59a7193329b974}
+      \strng{authorbibnamehash}{edfede3a3dbf15b6db59a7193329b974}
+      \strng{authornamehash}{edfede3a3dbf15b6db59a7193329b974}
+      \strng{authorfullhash}{edfede3a3dbf15b6db59a7193329b974}
+      \field{sortinit}{O}
+      \field{sortinithash}{2cd7140a07aea5341f9e2771efe90aae}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{edition}{5th}
+      \field{title}{Modern Control Engineering}
+      \field{year}{2010}
+    \endentry
+    \entry{oppenheim2010discrete}{book}{}
+      \name{author}{2}{}{%
+        {{hash=91dbf9ff367cd6c6bb21dadfe228fb18}{%
+           family={Oppenheim},
+           familyi={O\bibinitperiod},
+           given={A.V.},
+           giveni={A\bibinitperiod}}}%
+        {{hash=a044dbc8269130b0dbab3ef220d25a5d}{%
+           family={Schafer},
+           familyi={S\bibinitperiod},
+           given={R.W.},
+           giveni={R\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {Pearson}%
+      }
+      \strng{namehash}{1584e359ca2fac191866dec69fdf8322}
+      \strng{fullhash}{1584e359ca2fac191866dec69fdf8322}
+      \strng{bibnamehash}{1584e359ca2fac191866dec69fdf8322}
+      \strng{authorbibnamehash}{1584e359ca2fac191866dec69fdf8322}
+      \strng{authornamehash}{1584e359ca2fac191866dec69fdf8322}
+      \strng{authorfullhash}{1584e359ca2fac191866dec69fdf8322}
+      \field{extraname}{1}
+      \field{sortinit}{O}
+      \field{sortinithash}{2cd7140a07aea5341f9e2771efe90aae}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{edition}{3rd}
+      \field{title}{Discrete-Time Signal Processing}
+      \field{year}{2010}
+    \endentry
+    \entry{Oppenheim1999}{book}{}
+      \name{author}{2}{}{%
+        {{hash=3d2d1d8687de3baa625d3d62a7e0e464}{%
+           family={Oppenheim},
+           familyi={O\bibinitperiod},
+           given={Alan\bibnamedelima V.},
+           giveni={A\bibinitperiod\bibinitdelim V\bibinitperiod}}}%
+        {{hash=fd563e605c810572cece256b4271abd4}{%
+           family={Schafer},
+           familyi={S\bibinitperiod},
+           given={Ronald\bibnamedelima W.},
+           giveni={R\bibinitperiod\bibinitdelim W\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {Prentice Hall}%
+      }
+      \strng{namehash}{6b65fefc61ef07dfae5fcb9291d4aceb}
+      \strng{fullhash}{6b65fefc61ef07dfae5fcb9291d4aceb}
+      \strng{bibnamehash}{6b65fefc61ef07dfae5fcb9291d4aceb}
+      \strng{authorbibnamehash}{6b65fefc61ef07dfae5fcb9291d4aceb}
+      \strng{authornamehash}{6b65fefc61ef07dfae5fcb9291d4aceb}
+      \strng{authorfullhash}{6b65fefc61ef07dfae5fcb9291d4aceb}
+      \field{extraname}{2}
+      \field{sortinit}{O}
+      \field{sortinithash}{2cd7140a07aea5341f9e2771efe90aae}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{Discrete-Time Signal Processing}
+      \field{year}{1999}
+      \verb{urlraw}
+      \verb https://research.iaun.ac.ir/pd/naghsh/pdfs/UploadFile_2230.pdf
+      \endverb
+      \verb{url}
+      \verb https://research.iaun.ac.ir/pd/naghsh/pdfs/UploadFile_2230.pdf
+      \endverb
+    \endentry
+    \entry{pacheco2011introduction}{book}{}
+      \name{author}{1}{}{%
+        {{hash=7accb6acda1e0d7c78d42a3a22cf95ac}{%
+           family={Pacheco},
+           familyi={P\bibinitperiod},
+           given={P.},
+           giveni={P\bibinitperiod}}}%
+      }
+      \list{location}{1}{%
+        {Burlington, MA}%
+      }
+      \list{publisher}{1}{%
+        {Morgan Kaufmann}%
+      }
+      \strng{namehash}{7accb6acda1e0d7c78d42a3a22cf95ac}
+      \strng{fullhash}{7accb6acda1e0d7c78d42a3a22cf95ac}
+      \strng{bibnamehash}{7accb6acda1e0d7c78d42a3a22cf95ac}
+      \strng{authorbibnamehash}{7accb6acda1e0d7c78d42a3a22cf95ac}
+      \strng{authornamehash}{7accb6acda1e0d7c78d42a3a22cf95ac}
+      \strng{authorfullhash}{7accb6acda1e0d7c78d42a3a22cf95ac}
+      \field{sortinit}{P}
+      \field{sortinithash}{ff3bcf24f47321b42cb156c2cc8a8422}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{An Introduction to Parallel Programming}
+      \field{year}{2011}
+    \endentry
+    \entry{proakis2001digital}{book}{}
+      \name{author}{2}{}{%
+        {{hash=4837b237f57c4c1e7380a9ecd70379ff}{%
+           family={Proakis},
+           familyi={P\bibinitperiod},
+           given={J.\bibnamedelimi G.},
+           giveni={J\bibinitperiod\bibinitdelim G\bibinitperiod}}}%
+        {{hash=29e725270e71dc25762ba1b33e7cd197}{%
+           family={Salehi},
+           familyi={S\bibinitperiod},
+           given={M.},
+           giveni={M\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {McGraw-Hill}%
+      }
+      \strng{namehash}{4a8bae2f68261bdc4c1d0c4dd56dc1ec}
+      \strng{fullhash}{4a8bae2f68261bdc4c1d0c4dd56dc1ec}
+      \strng{bibnamehash}{4a8bae2f68261bdc4c1d0c4dd56dc1ec}
+      \strng{authorbibnamehash}{4a8bae2f68261bdc4c1d0c4dd56dc1ec}
+      \strng{authornamehash}{4a8bae2f68261bdc4c1d0c4dd56dc1ec}
+      \strng{authorfullhash}{4a8bae2f68261bdc4c1d0c4dd56dc1ec}
+      \field{sortinit}{P}
+      \field{sortinithash}{ff3bcf24f47321b42cb156c2cc8a8422}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{Digital Communications}
+      \field{year}{2001}
+    \endentry
+    \entry{robbins2003unix}{book}{}
+      \name{author}{2}{}{%
+        {{hash=774f2dd7e5f6b10ecc70414811ab94b8}{%
+           family={Robbins},
+           familyi={R\bibinitperiod},
+           given={K.A.},
+           giveni={K\bibinitperiod}}}%
+        {{hash=dad6d6c1bba5e371603c6e08caff83f9}{%
+           family={Robbins},
+           familyi={R\bibinitperiod},
+           given={S.},
+           giveni={S\bibinitperiod}}}%
+      }
+      \list{location}{1}{%
+        {Upper Saddle River, NJ}%
+      }
+      \list{publisher}{1}{%
+        {Prentice Hall}%
+      }
+      \strng{namehash}{b77a2d93e8c19b767600d74707e897ef}
+      \strng{fullhash}{b77a2d93e8c19b767600d74707e897ef}
+      \strng{bibnamehash}{b77a2d93e8c19b767600d74707e897ef}
+      \strng{authorbibnamehash}{b77a2d93e8c19b767600d74707e897ef}
+      \strng{authornamehash}{b77a2d93e8c19b767600d74707e897ef}
+      \strng{authorfullhash}{b77a2d93e8c19b767600d74707e897ef}
+      \field{sortinit}{R}
+      \field{sortinithash}{5e1c39a9d46ffb6bebd8f801023a9486}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{edition}{2nd}
+      \field{title}{UNIX Systems Programming: Communication, Concurrency, and Threads}
+      \field{year}{2003}
+    \endentry
+    \entry{silberschatz2018operating}{book}{}
+      \name{author}{3}{}{%
+        {{hash=f9ae1f78b7dfe96c8239dc6c7fb5e722}{%
+           family={Silberschatz},
+           familyi={S\bibinitperiod},
+           given={A.},
+           giveni={A\bibinitperiod}}}%
+        {{hash=d078b251f3390ed8699ff3175e22ba25}{%
+           family={Galvin},
+           familyi={G\bibinitperiod},
+           given={P.},
+           giveni={P\bibinitperiod}}}%
+        {{hash=e0f60dc296cd583a60cdc531a9217da7}{%
+           family={Gagne},
+           familyi={G\bibinitperiod},
+           given={G.},
+           giveni={G\bibinitperiod}}}%
+      }
+      \list{location}{1}{%
+        {Hoboken, NJ}%
+      }
+      \list{publisher}{1}{%
+        {Wiley}%
+      }
+      \strng{namehash}{534ad6be7338532fb399d30e1f3d960a}
+      \strng{fullhash}{666d07223ce4a659ac8d8aa08fcc2166}
+      \strng{bibnamehash}{666d07223ce4a659ac8d8aa08fcc2166}
+      \strng{authorbibnamehash}{666d07223ce4a659ac8d8aa08fcc2166}
+      \strng{authornamehash}{534ad6be7338532fb399d30e1f3d960a}
+      \strng{authorfullhash}{666d07223ce4a659ac8d8aa08fcc2166}
+      \field{sortinit}{S}
+      \field{sortinithash}{b164b07b29984b41daf1e85279fbc5ab}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{edition}{10th}
+      \field{title}{Operating System Concepts}
+      \field{year}{2018}
+    \endentry
+    \entry{stevens2005unix}{book}{}
+      \name{author}{3}{}{%
+        {{hash=3cb4a6cccfba017024da983af65c091e}{%
+           family={Stevens},
+           familyi={S\bibinitperiod},
+           given={W.R.},
+           giveni={W\bibinitperiod}}}%
+        {{hash=8a543cf0581a9b423777fff90813320c}{%
+           family={Fenner},
+           familyi={F\bibinitperiod},
+           given={B.},
+           giveni={B\bibinitperiod}}}%
+        {{hash=2ec28772e2498d72bd22d37e65fce961}{%
+           family={Rudoff},
+           familyi={R\bibinitperiod},
+           given={A.M.},
+           giveni={A\bibinitperiod}}}%
+      }
+      \list{location}{1}{%
+        {Boston, MA}%
+      }
+      \list{publisher}{1}{%
+        {Addison-Wesley Professional}%
+      }
+      \strng{namehash}{3f169c0e648e70f660181cf528f6e31d}
+      \strng{fullhash}{d8cc2426846fdfe99dd75b994ca5069c}
+      \strng{bibnamehash}{d8cc2426846fdfe99dd75b994ca5069c}
+      \strng{authorbibnamehash}{d8cc2426846fdfe99dd75b994ca5069c}
+      \strng{authornamehash}{3f169c0e648e70f660181cf528f6e31d}
+      \strng{authorfullhash}{d8cc2426846fdfe99dd75b994ca5069c}
+      \field{sortinit}{S}
+      \field{sortinithash}{b164b07b29984b41daf1e85279fbc5ab}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{edition}{2nd}
+      \field{title}{UNIX Network Programming, Volume 2: Interprocess Communications}
+      \field{year}{2005}
+    \endentry
+    \entry{stevens2013advanced}{book}{}
+      \name{author}{2}{}{%
+        {{hash=3cb4a6cccfba017024da983af65c091e}{%
+           family={Stevens},
+           familyi={S\bibinitperiod},
+           given={W.R.},
+           giveni={W\bibinitperiod}}}%
+        {{hash=a977d1f8048883fe32798543f7fe61ff}{%
+           family={Rago},
+           familyi={R\bibinitperiod},
+           given={S.A.},
+           giveni={S\bibinitperiod}}}%
+      }
+      \list{location}{1}{%
+        {Boston, MA}%
+      }
+      \list{publisher}{1}{%
+        {Addison-Wesley Professional}%
+      }
+      \strng{namehash}{2bcdc33cb9ae1437d23b13a51cfdd0a0}
+      \strng{fullhash}{2bcdc33cb9ae1437d23b13a51cfdd0a0}
+      \strng{bibnamehash}{2bcdc33cb9ae1437d23b13a51cfdd0a0}
+      \strng{authorbibnamehash}{2bcdc33cb9ae1437d23b13a51cfdd0a0}
+      \strng{authornamehash}{2bcdc33cb9ae1437d23b13a51cfdd0a0}
+      \strng{authorfullhash}{2bcdc33cb9ae1437d23b13a51cfdd0a0}
+      \field{sortinit}{S}
+      \field{sortinithash}{b164b07b29984b41daf1e85279fbc5ab}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{edition}{3rd}
+      \field{title}{Advanced Programming in the UNIX Environment}
+      \field{year}{2013}
+    \endentry
+    \entry{tanenbaum2015modern}{book}{}
+      \name{author}{2}{}{%
+        {{hash=92bc8f2b5a926e6cc80dfae03d2751e5}{%
+           family={Tanenbaum},
+           familyi={T\bibinitperiod},
+           given={A.S.},
+           giveni={A\bibinitperiod}}}%
+        {{hash=83bb0eccd1739b89d14ecb8fc0a53518}{%
+           family={Bos},
+           familyi={B\bibinitperiod},
+           given={H.},
+           giveni={H\bibinitperiod}}}%
+      }
+      \list{location}{1}{%
+        {Upper Saddle River, NJ}%
+      }
+      \list{publisher}{1}{%
+        {Pearson}%
+      }
+      \strng{namehash}{c8193b5cdb3caa3f8bfe32f030fec50c}
+      \strng{fullhash}{c8193b5cdb3caa3f8bfe32f030fec50c}
+      \strng{bibnamehash}{c8193b5cdb3caa3f8bfe32f030fec50c}
+      \strng{authorbibnamehash}{c8193b5cdb3caa3f8bfe32f030fec50c}
+      \strng{authornamehash}{c8193b5cdb3caa3f8bfe32f030fec50c}
+      \strng{authorfullhash}{c8193b5cdb3caa3f8bfe32f030fec50c}
+      \field{sortinit}{T}
+      \field{sortinithash}{9af77f0292593c26bde9a56e688eaee9}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{edition}{4th}
+      \field{title}{Modern Operating Systems}
+      \field{year}{2015}
+    \endentry
+  \enddatalist
+\endrefsection
+\endinput
+

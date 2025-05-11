@@ -27,6 +27,9 @@
 \usepackage{tcolorbox}
 \tcbuselibrary{minted,breakable}
 
+% \usepackage[backend=biber, style=ieee]{biblatex}
+% \addbibresource{Bibliography/Bibliography.bib}
+% \addbibresource{Bibliografia.bib}
 
 %%% Document Version %%%
 \DocumentVersion{1.0.0} % This is required only if the 'docstage' is set to 'working'.
@@ -63,8 +66,7 @@
 
 %%% Ensure all figures are closed properly %%%
 %%% Bibliography %%%
-\printbibliography[title={\refname},heading=bibintoc]
-
-\include{Chapters/06-Anexos}
+% \printbibliography[title={\refname},heading=bibintoc]
+\printbibliography
 
 \end{document}

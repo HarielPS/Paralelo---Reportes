@@ -1,0 +1,192 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{c+cp}{\PYGZsh{}include}\PYG{c+cpf}{\PYGZlt{}stdio.h\PYGZgt{}}
+\PYG{c+cp}{\PYGZsh{}include}\PYG{c+cpf}{\PYGZlt{}stdlib.h\PYGZgt{}}
+\PYG{c+cp}{\PYGZsh{}include}\PYG{c+cpf}{\PYGZlt{}unistd.h\PYGZgt{}}
+\PYG{c+cp}{\PYGZsh{}include}\PYG{c+cpf}{\PYGZlt{}sys/ipc.h\PYGZgt{}}
+\PYG{c+cp}{\PYGZsh{}include}\PYG{c+cpf}{\PYGZlt{}sys/shm.h\PYGZgt{}}
+\PYG{c+cp}{\PYGZsh{}include}\PYG{c+cpf}{\PYGZlt{}sys/sem.h\PYGZgt{}}
+\PYG{c+cp}{\PYGZsh{}include}\PYG{c+cpf}{\PYGZlt{}sys/wait.h\PYGZgt{}}
+\PYG{c+cp}{\PYGZsh{}include}\PYG{c+cpf}{\PYGZlt{}math.h\PYGZgt{}}
+
+\PYG{c+cp}{\PYGZsh{}define INICIO 3.14}
+\PYG{c+cp}{\PYGZsh{}define FIN \PYGZhy{}3.14}
+\PYG{c+cp}{\PYGZsh{}define PASO 0.15}
+\PYG{c+cp}{\PYGZsh{}define PERMISOS 0666}
+\PYG{c+cp}{\PYGZsh{}define ITERACION 10}
+\PYG{c+cp}{\PYGZsh{}define COLUMNAS 12}
+
+\PYG{c+c1}{// Permiso	Acceso del dueño	Grupo	Otros}
+\PYG{c+c1}{// 0600	     rw\PYGZhy{}	         \PYGZhy{}\PYGZhy{}\PYGZhy{}	\PYGZhy{}\PYGZhy{}\PYGZhy{}}
+\PYG{c+c1}{// 0666	     rw\PYGZhy{}	         rw\PYGZhy{}	rw\PYGZhy{}}
+\PYG{c+c1}{// 0644	     rw\PYGZhy{}	         r\PYGZhy{}\PYGZhy{}	r\PYGZhy{}\PYGZhy{}}
+\PYG{c+c1}{// 0777	     rwx	         rwx	rwx inseguro}
+
+\PYG{c+c1}{// Estructura de archivo en memoria}
+\PYG{c+c1}{// n	     n1	     n2      ... 	suma de fila}
+\PYG{c+c1}{// 6	     0.02	         ...	\PYGZhy{}\PYGZhy{}\PYGZhy{}}
+\PYG{c+c1}{// 6	     1.20	         ...	\PYGZhy{}\PYGZhy{}\PYGZhy{}}
+\PYG{c+c1}{// 6	     2.37	         ...	\PYGZhy{}\PYGZhy{}\PYGZhy{}}
+\PYG{c+c1}{// ...	     ...	         ...	\PYGZhy{}\PYGZhy{}\PYGZhy{} }
+
+\PYG{c+c1}{// definir funcion de Fourier}
+\PYG{k+kt}{double}\PYG{+w}{  }\PYG{n+nf}{funcion}\PYG{p}{(}\PYG{k+kt}{int}\PYG{+w}{ }\PYG{n}{n}\PYG{p}{,}\PYG{+w}{ }\PYG{k+kt}{double}\PYG{+w}{  }\PYG{n}{x}\PYG{p}{)}
+\PYG{p}{\PYGZob{}}
+\PYG{+w}{    }\PYG{k+kt}{double}\PYG{+w}{ }\PYG{n}{seno}\PYG{p}{;}
+\PYG{+w}{    }\PYG{n}{seno}\PYG{o}{=}\PYG{n}{sin}\PYG{p}{(}\PYG{n}{n}\PYG{o}{*}\PYG{n}{x}\PYG{p}{);}
+\PYG{+w}{    }\PYG{k}{return}\PYG{+w}{ }\PYG{p}{(}\PYG{k+kt}{double}\PYG{+w}{ }\PYG{p}{)((}\PYG{l+m+mf}{8.0000}\PYG{o}{/}\PYG{n}{n}\PYG{p}{)}\PYG{o}{*}\PYG{+w}{ }\PYG{n}{pow}\PYG{p}{(}\PYG{l+m+mi}{\PYGZhy{}1}\PYG{p}{,}\PYG{n}{n}\PYG{p}{)}\PYG{+w}{ }\PYG{o}{*}\PYG{+w}{ }\PYG{n}{seno}\PYG{p}{);}
+\PYG{p}{\PYGZcb{}}
+
+\PYG{c+c1}{// Funciones para el semaforo}
+\PYG{k+kt}{void}\PYG{+w}{ }\PYG{n+nf}{down}\PYG{p}{(}\PYG{k+kt}{int}\PYG{+w}{ }\PYG{n}{semid}\PYG{p}{)}\PYG{+w}{ }\PYG{p}{\PYGZob{}}
+\PYG{+w}{    }\PYG{k}{struct}\PYG{+w}{ }\PYG{n+nc}{sembuf}\PYG{+w}{ }\PYG{n}{op}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{p}{\PYGZob{}}\PYG{l+m+mi}{0}\PYG{p}{,}\PYG{+w}{ }\PYG{l+m+mi}{\PYGZhy{}1}\PYG{p}{,}\PYG{+w}{ }\PYG{l+m+mi}{0}\PYG{p}{\PYGZcb{};}
+\PYG{+w}{    }\PYG{n}{semop}\PYG{p}{(}\PYG{n}{semid}\PYG{p}{,}\PYG{+w}{ }\PYG{o}{\PYGZam{}}\PYG{n}{op}\PYG{p}{,}\PYG{+w}{ }\PYG{l+m+mi}{1}\PYG{p}{);}
+\PYG{p}{\PYGZcb{}}
+
+\PYG{k+kt}{void}\PYG{+w}{ }\PYG{n+nf}{up}\PYG{p}{(}\PYG{k+kt}{int}\PYG{+w}{ }\PYG{n}{semid}\PYG{p}{)}\PYG{+w}{ }\PYG{p}{\PYGZob{}}
+\PYG{+w}{    }\PYG{k}{struct}\PYG{+w}{ }\PYG{n+nc}{sembuf}\PYG{+w}{ }\PYG{n}{op}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{p}{\PYGZob{}}\PYG{l+m+mi}{0}\PYG{p}{,}\PYG{+w}{ }\PYG{l+m+mi}{1}\PYG{p}{,}\PYG{+w}{ }\PYG{l+m+mi}{0}\PYG{p}{\PYGZcb{};}
+\PYG{+w}{    }\PYG{n}{semop}\PYG{p}{(}\PYG{n}{semid}\PYG{p}{,}\PYG{+w}{ }\PYG{o}{\PYGZam{}}\PYG{n}{op}\PYG{p}{,}\PYG{+w}{ }\PYG{l+m+mi}{1}\PYG{p}{);}
+\PYG{p}{\PYGZcb{}}
+
+\PYG{c+c1}{// Crear Semaforo}
+\PYG{k+kt}{int}\PYG{+w}{ }\PYG{n+nf}{Crea\PYGZus{}semaforo}\PYG{p}{(}\PYG{k+kt}{key\PYGZus{}t}\PYG{+w}{ }\PYG{n}{llave}\PYG{p}{,}\PYG{k+kt}{int}\PYG{+w}{ }\PYG{n}{valor\PYGZus{}inicial}\PYG{p}{)}
+\PYG{p}{\PYGZob{}}
+\PYG{+w}{   }\PYG{k+kt}{int}\PYG{+w}{ }\PYG{n}{semid}\PYG{o}{=}\PYG{n}{semget}\PYG{p}{(}\PYG{n}{llave}\PYG{p}{,}\PYG{l+m+mi}{1}\PYG{p}{,}\PYG{n}{IPC\PYGZus{}CREAT}\PYG{o}{|}\PYG{n}{PERMISOS}\PYG{p}{);}
+\PYG{+w}{   }\PYG{k}{if}\PYG{p}{(}\PYG{n}{semid}\PYG{o}{==}\PYG{l+m+mi}{\PYGZhy{}1}\PYG{p}{)}
+\PYG{+w}{   }\PYG{p}{\PYGZob{}}
+\PYG{+w}{      }\PYG{k}{return}\PYG{+w}{ }\PYG{l+m+mi}{\PYGZhy{}1}\PYG{p}{;}
+\PYG{+w}{   }\PYG{p}{\PYGZcb{}}
+\PYG{+w}{   }\PYG{n}{semctl}\PYG{p}{(}\PYG{n}{semid}\PYG{p}{,}\PYG{l+m+mi}{0}\PYG{p}{,}\PYG{n}{SETVAL}\PYG{p}{,}\PYG{n}{valor\PYGZus{}inicial}\PYG{p}{);}
+\PYG{+w}{   }\PYG{k}{return}\PYG{+w}{ }\PYG{n}{semid}\PYG{p}{;}
+\PYG{p}{\PYGZcb{}}
+
+\PYG{k+kt}{void}\PYG{+w}{ }\PYG{n+nf}{crearArchivo}\PYG{p}{(}\PYG{k}{const}\PYG{+w}{ }\PYG{k+kt}{char}\PYG{+w}{ }\PYG{o}{*}\PYG{n}{nombreArchivo}\PYG{p}{)}\PYG{+w}{ }\PYG{p}{\PYGZob{}}
+\PYG{+w}{    }\PYG{k+kt}{FILE}\PYG{+w}{ }\PYG{o}{*}\PYG{n}{archivo}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n}{fopen}\PYG{p}{(}\PYG{n}{nombreArchivo}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZdq{}w\PYGZdq{}}\PYG{p}{);}
+\PYG{+w}{    }\PYG{k}{if}\PYG{+w}{ }\PYG{p}{(}\PYG{n}{archivo}\PYG{+w}{ }\PYG{o}{==}\PYG{+w}{ }\PYG{n+nb}{NULL}\PYG{p}{)}\PYG{+w}{ }\PYG{p}{\PYGZob{}}
+\PYG{+w}{        }\PYG{n}{perror}\PYG{p}{(}\PYG{l+s}{\PYGZdq{}No se pudo crear el archivo\PYGZdq{}}\PYG{p}{);}
+\PYG{+w}{        }\PYG{n}{exit}\PYG{p}{(}\PYG{l+m+mi}{1}\PYG{p}{);}
+\PYG{+w}{    }\PYG{p}{\PYGZcb{}}
+\PYG{+w}{    }\PYG{n}{fclose}\PYG{p}{(}\PYG{n}{archivo}\PYG{p}{);}
+\PYG{p}{\PYGZcb{}}
+
+
+\PYG{k+kt}{int}\PYG{+w}{ }\PYG{n+nf}{main}\PYG{p}{(}\PYG{k+kt}{int}\PYG{+w}{ }\PYG{n}{argc}\PYG{p}{,}\PYG{+w}{ }\PYG{k+kt}{char}\PYG{+w}{ }\PYG{o}{*}\PYG{n}{argv}\PYG{p}{[])}
+\PYG{p}{\PYGZob{}}
+\PYG{+w}{    }\PYG{k+kt}{pid\PYGZus{}t}\PYG{+w}{ }\PYG{n}{hijos}\PYG{p}{[}\PYG{n}{COLUMNAS}\PYG{p}{];}
+\PYG{+w}{    }\PYG{k+kt}{int}\PYG{+w}{ }\PYG{n}{numero\PYGZus{}elementos}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{p}{(}\PYG{k+kt}{int}\PYG{p}{)(((}\PYG{n}{INICIO}\PYG{+w}{ }\PYG{o}{\PYGZhy{}}\PYG{+w}{ }\PYG{n}{FIN}\PYG{p}{)}\PYG{+w}{ }\PYG{o}{/}\PYG{+w}{ }\PYG{n}{PASO}\PYG{p}{)}\PYG{+w}{ }\PYG{o}{+}\PYG{+w}{ }\PYG{l+m+mi}{1}\PYG{p}{);}
+\PYG{+w}{    }\PYG{k+kt}{int}\PYG{+w}{ }\PYG{n}{a0}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{l+m+mi}{6}\PYG{p}{;}
+\PYG{+w}{    }\PYG{k+kt}{double}\PYG{+w}{  }\PYG{n}{valores\PYGZus{}paso}\PYG{p}{[}\PYG{n}{numero\PYGZus{}elementos}\PYG{p}{];}
+\PYG{+w}{    }\PYG{k+kt}{double}\PYG{+w}{  }\PYG{n}{valor\PYGZus{}actual}\PYG{p}{;}
+\PYG{+w}{    }\PYG{k+kt}{int}\PYG{+w}{ }\PYG{n}{indice}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{l+m+mi}{0}\PYG{p}{;}
+\PYG{+w}{    }\PYG{k+kt}{int}\PYG{+w}{ }\PYG{n}{tam\PYGZus{}memoria}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n}{COLUMNAS}\PYG{+w}{ }\PYG{o}{*}\PYG{+w}{ }\PYG{n}{numero\PYGZus{}elementos}\PYG{+w}{ }\PYG{o}{*}\PYG{+w}{ }\PYG{k}{sizeof}\PYG{p}{(}\PYG{k+kt}{double}\PYG{+w}{ }\PYG{p}{);}
+
+
+\PYG{+w}{    }\PYG{n}{crearArchivo}\PYG{p}{(}\PYG{l+s}{\PYGZdq{}fourier\PYGZdq{}}\PYG{p}{);}
+\PYG{+w}{    }\PYG{n}{crearArchivo}\PYG{p}{(}\PYG{l+s}{\PYGZdq{}semaforo\PYGZus{}general\PYGZdq{}}\PYG{p}{);}
+\PYG{+w}{    }\PYG{k+kt}{key\PYGZus{}t}\PYG{+w}{ }\PYG{n}{clave\PYGZus{}resultados}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n}{ftok}\PYG{p}{(}\PYG{l+s}{\PYGZdq{}fourier\PYGZdq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{l+m+mi}{66}\PYG{p}{);}
+\PYG{+w}{    }\PYG{k+kt}{key\PYGZus{}t}\PYG{+w}{ }\PYG{n}{clave\PYGZus{}semaforo\PYGZus{}general}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n}{ftok}\PYG{p}{(}\PYG{l+s}{\PYGZdq{}semaforo\PYGZus{}general\PYGZdq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{l+m+mi}{66}\PYG{p}{);}
+
+\PYG{+w}{    }\PYG{c+c1}{// Creamos el semaforo}
+\PYG{+w}{    }\PYG{k+kt}{int}\PYG{+w}{ }\PYG{n}{semaforo\PYGZus{}general}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n}{Crea\PYGZus{}semaforo}\PYG{p}{(}\PYG{n}{clave\PYGZus{}semaforo\PYGZus{}general}\PYG{p}{,}\PYG{+w}{ }\PYG{l+m+mi}{1}\PYG{p}{);}
+
+\PYG{+w}{    }\PYG{k}{if}\PYG{+w}{ }\PYG{p}{(}\PYG{n}{semaforo\PYGZus{}general}\PYG{+w}{ }\PYG{o}{==}\PYG{+w}{ }\PYG{l+m+mi}{\PYGZhy{}1}\PYG{p}{)}\PYG{+w}{ }\PYG{p}{\PYGZob{}}
+\PYG{+w}{        }\PYG{n}{perror}\PYG{p}{(}\PYG{l+s}{\PYGZdq{}Error al crear el semáforo\PYGZdq{}}\PYG{p}{);}
+\PYG{+w}{        }\PYG{n}{exit}\PYG{p}{(}\PYG{l+m+mi}{1}\PYG{p}{);}
+\PYG{+w}{    }\PYG{p}{\PYGZcb{}}
+
+\PYG{+w}{    }\PYG{c+c1}{// Creamos la memoria compartida}
+\PYG{+w}{    }\PYG{k+kt}{int}\PYG{+w}{ }\PYG{n}{id\PYGZus{}matriz}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n}{shmget}\PYG{p}{(}\PYG{n}{clave\PYGZus{}resultados}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{tam\PYGZus{}memoria}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{IPC\PYGZus{}CREAT}\PYG{o}{|}\PYG{n}{PERMISOS}\PYG{p}{);}
+\PYG{+w}{    }\PYG{k}{if}\PYG{+w}{ }\PYG{p}{(}\PYG{n}{id\PYGZus{}matriz}\PYG{+w}{ }\PYG{o}{==}\PYG{+w}{ }\PYG{l+m+mi}{\PYGZhy{}1}\PYG{p}{)}\PYG{+w}{ }\PYG{p}{\PYGZob{}}
+\PYG{+w}{        }\PYG{n}{perror}\PYG{p}{(}\PYG{l+s}{\PYGZdq{}Error al crear memoria compartida\PYGZdq{}}\PYG{p}{);}
+\PYG{+w}{        }\PYG{n}{exit}\PYG{p}{(}\PYG{l+m+mi}{1}\PYG{p}{);}
+\PYG{+w}{    }\PYG{p}{\PYGZcb{}}
+
+\PYG{+w}{    }\PYG{c+c1}{// Puntero a la memoria compartida}
+\PYG{+w}{    }\PYG{k+kt}{double}\PYG{+w}{  }\PYG{p}{(}\PYG{o}{*}\PYG{n}{matriz\PYGZus{}resultados}\PYG{p}{)[}\PYG{n}{numero\PYGZus{}elementos}\PYG{p}{];}
+\PYG{+w}{    }\PYG{n}{matriz\PYGZus{}resultados}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{p}{(}\PYG{k+kt}{double}\PYG{+w}{  }\PYG{p}{(}\PYG{o}{*}\PYG{p}{)[}\PYG{n}{numero\PYGZus{}elementos}\PYG{p}{])}\PYG{+w}{ }\PYG{n}{shmat}\PYG{p}{(}\PYG{n}{id\PYGZus{}matriz}\PYG{p}{,}\PYG{+w}{ }\PYG{n+nb}{NULL}\PYG{p}{,}\PYG{+w}{ }\PYG{l+m+mi}{0}\PYG{p}{);}
+\PYG{+w}{    }\PYG{k}{if}\PYG{+w}{ }\PYG{p}{(}\PYG{n}{matriz\PYGZus{}resultados}\PYG{+w}{ }\PYG{o}{==}\PYG{+w}{ }\PYG{p}{(}\PYG{k+kt}{void}\PYG{+w}{ }\PYG{o}{*}\PYG{p}{)}\PYG{l+m+mi}{\PYGZhy{}1}\PYG{p}{)}\PYG{+w}{ }\PYG{p}{\PYGZob{}}
+\PYG{+w}{        }\PYG{n}{perror}\PYG{p}{(}\PYG{l+s}{\PYGZdq{}Error al enlazar memoria\PYGZdq{}}\PYG{p}{);}
+\PYG{+w}{        }\PYG{n}{exit}\PYG{p}{(}\PYG{l+m+mi}{1}\PYG{p}{);}
+\PYG{+w}{    }\PYG{p}{\PYGZcb{}}
+
+\PYG{+w}{    }\PYG{c+c1}{// Generamos valores de paso}
+\PYG{+w}{    }\PYG{k}{for}\PYG{+w}{ }\PYG{p}{(}\PYG{n}{valor\PYGZus{}actual}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n}{FIN}\PYG{p}{;}\PYG{+w}{ }\PYG{n}{valor\PYGZus{}actual}\PYG{+w}{ }\PYG{o}{\PYGZlt{}=}\PYG{+w}{ }\PYG{n}{INICIO}\PYG{p}{;}\PYG{+w}{ }\PYG{n}{valor\PYGZus{}actual}\PYG{+w}{ }\PYG{o}{+=}\PYG{+w}{ }\PYG{n}{PASO}\PYG{p}{)}\PYG{+w}{ }\PYG{p}{\PYGZob{}}
+\PYG{+w}{        }\PYG{k}{if}\PYG{+w}{ }\PYG{p}{(}\PYG{n}{indice}\PYG{+w}{ }\PYG{o}{\PYGZlt{}}\PYG{+w}{ }\PYG{n}{numero\PYGZus{}elementos}\PYG{p}{)}\PYG{+w}{ }\PYG{p}{\PYGZob{}}
+\PYG{+w}{          }\PYG{n}{valores\PYGZus{}paso}\PYG{p}{[}\PYG{n}{indice}\PYG{p}{]}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n}{valor\PYGZus{}actual}\PYG{p}{;}
+\PYG{+w}{          }\PYG{n}{indice}\PYG{o}{++}\PYG{p}{;}
+\PYG{+w}{        }\PYG{p}{\PYGZcb{}}
+\PYG{+w}{    }\PYG{p}{\PYGZcb{}}
+
+\PYG{+w}{    }\PYG{c+c1}{// Primer hijo para n=0 valor constante de 6}
+\PYG{+w}{    }\PYG{n}{hijos}\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{]}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n}{fork}\PYG{p}{();}\PYG{+w}{ }
+\PYG{+w}{    }\PYG{k}{if}\PYG{+w}{ }\PYG{p}{(}\PYG{n}{hijos}\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{]}\PYG{+w}{ }\PYG{o}{==}\PYG{+w}{ }\PYG{l+m+mi}{0}\PYG{p}{)}\PYG{+w}{ }\PYG{p}{\PYGZob{}}
+\PYG{+w}{        }\PYG{c+c1}{// Proceso hijo}
+\PYG{+w}{        }\PYG{k}{for}\PYG{+w}{ }\PYG{p}{(}\PYG{k+kt}{int}\PYG{+w}{ }\PYG{n}{i}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{l+m+mi}{0}\PYG{p}{;}\PYG{+w}{ }\PYG{n}{i}\PYG{+w}{ }\PYG{o}{\PYGZlt{}}\PYG{+w}{ }\PYG{n}{numero\PYGZus{}elementos}\PYG{p}{;}\PYG{+w}{ }\PYG{n}{i}\PYG{o}{++}\PYG{p}{)}\PYG{+w}{ }\PYG{p}{\PYGZob{}}
+\PYG{+w}{            }\PYG{n}{matriz\PYGZus{}resultados}\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{][}\PYG{n}{i}\PYG{p}{]}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n}{a0}\PYG{p}{;}
+\PYG{+w}{        }\PYG{p}{\PYGZcb{}}
+\PYG{+w}{        }\PYG{n}{exit}\PYG{p}{(}\PYG{l+m+mi}{0}\PYG{p}{);}
+\PYG{+w}{    }\PYG{p}{\PYGZcb{}}
+
+\PYG{+w}{    }\PYG{c+c1}{// Generamos los demas hijos valores de n}
+\PYG{+w}{    }\PYG{k}{for}\PYG{+w}{ }\PYG{p}{(}\PYG{k+kt}{int}\PYG{+w}{ }\PYG{n}{n}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{l+m+mi}{1}\PYG{p}{;}\PYG{+w}{ }\PYG{n}{n}\PYG{+w}{ }\PYG{o}{\PYGZlt{}}\PYG{+w}{ }\PYG{p}{(}\PYG{n}{COLUMNAS}\PYG{+w}{ }\PYG{o}{\PYGZhy{}}\PYG{+w}{ }\PYG{l+m+mi}{1}\PYG{+w}{ }\PYG{p}{);}\PYG{+w}{ }\PYG{n}{n}\PYG{o}{++}\PYG{p}{)}\PYG{+w}{ }\PYG{p}{\PYGZob{}}
+\PYG{+w}{        }\PYG{n}{hijos}\PYG{p}{[}\PYG{n}{n}\PYG{p}{]}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n}{fork}\PYG{p}{();}
+\PYG{+w}{        }\PYG{k}{if}\PYG{+w}{ }\PYG{p}{(}\PYG{n}{hijos}\PYG{p}{[}\PYG{n}{n}\PYG{p}{]}\PYG{+w}{ }\PYG{o}{==}\PYG{+w}{ }\PYG{l+m+mi}{0}\PYG{p}{)}\PYG{+w}{ }\PYG{p}{\PYGZob{}}
+\PYG{+w}{            }\PYG{k}{for}\PYG{+w}{ }\PYG{p}{(}\PYG{k+kt}{int}\PYG{+w}{ }\PYG{n}{i}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{l+m+mi}{0}\PYG{p}{;}\PYG{+w}{ }\PYG{n}{i}\PYG{+w}{ }\PYG{o}{\PYGZlt{}}\PYG{+w}{ }\PYG{n}{numero\PYGZus{}elementos}\PYG{p}{;}\PYG{+w}{ }\PYG{n}{i}\PYG{o}{++}\PYG{p}{)}\PYG{+w}{ }\PYG{p}{\PYGZob{}}
+\PYG{+w}{                }\PYG{k+kt}{double}\PYG{+w}{  }\PYG{n}{x}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n}{valores\PYGZus{}paso}\PYG{p}{[}\PYG{n}{i}\PYG{p}{];}
+\PYG{+w}{                }\PYG{k+kt}{double}\PYG{+w}{  }\PYG{n}{bn}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n}{funcion}\PYG{p}{(}\PYG{n}{n}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{x}\PYG{p}{);}
+\PYG{+w}{    }
+\PYG{+w}{                }\PYG{n}{down}\PYG{p}{(}\PYG{n}{semaforo\PYGZus{}general}\PYG{p}{);}
+\PYG{+w}{                }\PYG{n}{matriz\PYGZus{}resultados}\PYG{p}{[}\PYG{n}{n}\PYG{p}{][}\PYG{n}{i}\PYG{p}{]}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n}{bn}\PYG{p}{;}
+\PYG{+w}{                }\PYG{c+c1}{// printf(\PYGZdq{}n = \PYGZpc{}d, x = \PYGZpc{}.2f, bn = \PYGZpc{}.4f\PYGZbs{}n\PYGZdq{}, n, x, bn);}
+\PYG{+w}{                }\PYG{n}{up}\PYG{p}{(}\PYG{n}{semaforo\PYGZus{}general}\PYG{p}{);}
+\PYG{+w}{            }\PYG{p}{\PYGZcb{}}
+\PYG{+w}{            }\PYG{n}{shmdt}\PYG{p}{(}\PYG{n}{matriz\PYGZus{}resultados}\PYG{p}{);}
+\PYG{+w}{            }\PYG{n}{exit}\PYG{p}{(}\PYG{l+m+mi}{0}\PYG{p}{);}
+\PYG{+w}{        }\PYG{p}{\PYGZcb{}}
+\PYG{+w}{    }\PYG{p}{\PYGZcb{}}
+
+\PYG{+w}{    }\PYG{c+c1}{// Esperamos a que terminen los hijos}
+\PYG{+w}{    }\PYG{k}{for}\PYG{+w}{ }\PYG{p}{(}\PYG{k+kt}{int}\PYG{+w}{ }\PYG{n}{i}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{l+m+mi}{0}\PYG{p}{;}\PYG{+w}{ }\PYG{n}{i}\PYG{+w}{ }\PYG{o}{\PYGZlt{}}\PYG{+w}{ }\PYG{n}{COLUMNAS}\PYG{+w}{ }\PYG{o}{\PYGZhy{}}\PYG{+w}{ }\PYG{l+m+mi}{1}\PYG{p}{;}\PYG{+w}{ }\PYG{n}{i}\PYG{o}{++}\PYG{p}{)}\PYG{+w}{ }\PYG{p}{\PYGZob{}}
+\PYG{+w}{        }\PYG{n}{wait}\PYG{p}{(}\PYG{n+nb}{NULL}\PYG{p}{);}
+\PYG{+w}{    }\PYG{p}{\PYGZcb{}}\PYG{+w}{    }
+\PYG{+w}{    }
+\PYG{+w}{    }\PYG{c+c1}{// Se calcula la suma de los resultados}
+\PYG{+w}{    }\PYG{k}{for}\PYG{+w}{ }\PYG{p}{(}\PYG{k+kt}{int}\PYG{+w}{ }\PYG{n}{i}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{l+m+mi}{0}\PYG{p}{;}\PYG{+w}{ }\PYG{n}{i}\PYG{+w}{ }\PYG{o}{\PYGZlt{}}\PYG{+w}{ }\PYG{n}{numero\PYGZus{}elementos}\PYG{p}{;}\PYG{+w}{ }\PYG{n}{i}\PYG{o}{++}\PYG{p}{)}\PYG{+w}{ }\PYG{p}{\PYGZob{}}
+\PYG{+w}{        }\PYG{k+kt}{double}\PYG{+w}{  }\PYG{n}{suma}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{l+m+mf}{0.0}\PYG{p}{;}
+\PYG{+w}{        }\PYG{k}{for}\PYG{+w}{ }\PYG{p}{(}\PYG{k+kt}{int}\PYG{+w}{ }\PYG{n}{fila}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{l+m+mi}{0}\PYG{p}{;}\PYG{+w}{ }\PYG{n}{fila}\PYG{+w}{ }\PYG{o}{\PYGZlt{}}\PYG{+w}{ }\PYG{n}{COLUMNAS}\PYG{+w}{ }\PYG{o}{\PYGZhy{}}\PYG{+w}{ }\PYG{l+m+mi}{1}\PYG{p}{;}\PYG{+w}{ }\PYG{n}{fila}\PYG{o}{++}\PYG{p}{)}\PYG{+w}{ }\PYG{p}{\PYGZob{}}
+\PYG{+w}{            }\PYG{n}{suma}\PYG{+w}{ }\PYG{o}{+=}\PYG{+w}{ }\PYG{n}{matriz\PYGZus{}resultados}\PYG{p}{[}\PYG{n}{fila}\PYG{p}{][}\PYG{n}{i}\PYG{p}{];}
+\PYG{+w}{        }\PYG{p}{\PYGZcb{}}
+\PYG{+w}{        }\PYG{n}{matriz\PYGZus{}resultados}\PYG{p}{[}\PYG{l+m+mi}{11}\PYG{p}{][}\PYG{n}{i}\PYG{p}{]}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n}{suma}\PYG{p}{;}
+\PYG{+w}{    }\PYG{p}{\PYGZcb{}}
+\PYG{+w}{    }
+\PYG{+w}{    }\PYG{k+kt}{FILE}\PYG{+w}{ }\PYG{o}{*}\PYG{n}{archivo}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n}{fopen}\PYG{p}{(}\PYG{l+s}{\PYGZdq{}resultados.csv\PYGZdq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZdq{}w\PYGZdq{}}\PYG{p}{);}
+\PYG{+w}{    }\PYG{k}{if}\PYG{+w}{ }\PYG{p}{(}\PYG{n}{archivo}\PYG{+w}{ }\PYG{o}{==}\PYG{+w}{ }\PYG{n+nb}{NULL}\PYG{p}{)}\PYG{+w}{ }\PYG{p}{\PYGZob{}}
+\PYG{+w}{        }\PYG{n}{perror}\PYG{p}{(}\PYG{l+s}{\PYGZdq{}Error al crear archivo CSV\PYGZdq{}}\PYG{p}{);}
+\PYG{+w}{        }\PYG{n}{exit}\PYG{p}{(}\PYG{l+m+mi}{1}\PYG{p}{);}
+\PYG{+w}{    }\PYG{p}{\PYGZcb{}}
+
+\PYG{+w}{    }
+\PYG{+w}{    }\PYG{c+c1}{// Se imprime la matriz resultados}
+\PYG{+w}{    }\PYG{n}{printf}\PYG{p}{(}\PYG{l+s}{\PYGZdq{}Matriz Resultados:}\PYG{l+s+se}{\PYGZbs{}n}\PYG{l+s}{\PYGZdq{}}\PYG{p}{);}
+\PYG{+w}{    }\PYG{k}{for}\PYG{+w}{ }\PYG{p}{(}\PYG{k+kt}{int}\PYG{+w}{ }\PYG{n}{j}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{l+m+mi}{0}\PYG{p}{;}\PYG{+w}{ }\PYG{n}{j}\PYG{+w}{ }\PYG{o}{\PYGZlt{}}\PYG{+w}{ }\PYG{n}{numero\PYGZus{}elementos}\PYG{p}{;}\PYG{+w}{ }\PYG{n}{j}\PYG{o}{++}\PYG{p}{)}\PYG{+w}{ }\PYG{p}{\PYGZob{}}
+\PYG{+w}{        }\PYG{n}{printf}\PYG{p}{(}\PYG{l+s}{\PYGZdq{}\PYGZpc{}.2f \PYGZdq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{valores\PYGZus{}paso}\PYG{p}{[}\PYG{n}{j}\PYG{p}{]);}
+\PYG{+w}{        }\PYG{n}{fprintf}\PYG{p}{(}\PYG{n}{archivo}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZdq{}\PYGZpc{}.2f\PYGZdq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{valores\PYGZus{}paso}\PYG{p}{[}\PYG{n}{j}\PYG{p}{]);}
+\PYG{+w}{        }\PYG{k}{for}\PYG{+w}{ }\PYG{p}{(}\PYG{k+kt}{int}\PYG{+w}{ }\PYG{n}{i}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{l+m+mi}{0}\PYG{p}{;}\PYG{+w}{ }\PYG{n}{i}\PYG{+w}{ }\PYG{o}{\PYGZlt{}}\PYG{+w}{ }\PYG{n}{COLUMNAS}\PYG{p}{;}\PYG{+w}{ }\PYG{n}{i}\PYG{o}{++}\PYG{p}{)}\PYG{+w}{ }\PYG{p}{\PYGZob{}}
+\PYG{+w}{            }\PYG{n}{fprintf}\PYG{p}{(}\PYG{n}{archivo}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZdq{},\PYGZpc{}.4f\PYGZdq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{matriz\PYGZus{}resultados}\PYG{p}{[}\PYG{n}{i}\PYG{p}{][}\PYG{n}{j}\PYG{p}{]);}
+\PYG{+w}{            }\PYG{n}{printf}\PYG{p}{(}\PYG{l+s}{\PYGZdq{}\PYGZpc{}.4f \PYGZdq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{matriz\PYGZus{}resultados}\PYG{p}{[}\PYG{n}{i}\PYG{p}{][}\PYG{n}{j}\PYG{p}{]);}
+\PYG{+w}{        }\PYG{p}{\PYGZcb{}}
+\PYG{+w}{        }\PYG{n}{printf}\PYG{p}{(}\PYG{l+s}{\PYGZdq{}}\PYG{l+s+se}{\PYGZbs{}n}\PYG{l+s}{\PYGZdq{}}\PYG{p}{);}
+\PYG{+w}{        }\PYG{n}{fprintf}\PYG{p}{(}\PYG{n}{archivo}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZdq{}}\PYG{l+s+se}{\PYGZbs{}n}\PYG{l+s}{\PYGZdq{}}\PYG{p}{);}
+\PYG{+w}{    }\PYG{p}{\PYGZcb{}}
+\PYG{+w}{    }\PYG{n}{fclose}\PYG{p}{(}\PYG{n}{archivo}\PYG{p}{);}
+\PYG{+w}{    }
+
+\PYG{+w}{    }\PYG{c+c1}{// Desvinculamos la memoria compartida}
+\PYG{+w}{    }\PYG{k}{if}\PYG{+w}{ }\PYG{p}{(}\PYG{n}{shmdt}\PYG{p}{(}\PYG{n}{matriz\PYGZus{}resultados}\PYG{p}{)}\PYG{+w}{ }\PYG{o}{==}\PYG{+w}{ }\PYG{l+m+mi}{\PYGZhy{}1}\PYG{p}{)}\PYG{+w}{ }\PYG{p}{\PYGZob{}}
+\PYG{+w}{        }\PYG{n}{perror}\PYG{p}{(}\PYG{l+s}{\PYGZdq{}Error al desvincular memoria compartida\PYGZdq{}}\PYG{p}{);}
+\PYG{+w}{        }\PYG{n}{exit}\PYG{p}{(}\PYG{l+m+mi}{1}\PYG{p}{);}
+\PYG{+w}{    }\PYG{p}{\PYGZcb{}}
+\PYG{+w}{    }\PYG{n}{shmctl}\PYG{p}{(}\PYG{n}{id\PYGZus{}matriz}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{IPC\PYGZus{}RMID}\PYG{p}{,}\PYG{+w}{ }\PYG{n+nb}{NULL}\PYG{p}{);}
+\PYG{+w}{    }\PYG{n}{semctl}\PYG{p}{(}\PYG{n}{semaforo\PYGZus{}general}\PYG{p}{,}\PYG{+w}{ }\PYG{l+m+mi}{0}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{IPC\PYGZus{}RMID}\PYG{p}{);}
+\PYG{+w}{    }\PYG{k}{return}\PYG{+w}{ }\PYG{l+m+mi}{0}\PYG{p}{;}
+\PYG{p}{\PYGZcb{}}
+\end{Verbatim}
